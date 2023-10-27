@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Research</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+
+    <div id="app">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Crypto Research</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Research</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="new.html">Test</a>
+            </li>
+            <li>
+                <button id="mode-toggle" class="btn btn-primary ml-auto">Toggle Mode</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div class="container" id="main">
+
+    <div class="container" mt-3>
+        <input type="text" class="form-control" id="add-coin-favs" placeholder="Search coin...">
+    </div>
+
+    <div class="row">
+        <div class="col-md-8" id="main-left">
+            <button class="btn btn-primary" id="toggle-table-button">Switch General/Fav table</button>
+
+            <div class="container" id="coins-general-container">
+                <h6>Top Coins</h6>
+                <div class="table-responsive" id="table-wrapper">
+                    <table class="table table-sm table-bordered table-striped align-middle" id="coins-general-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Coin</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>TVL</th>
+                                <th>MCap</th>
+                                <th>FDV</th>
+                                <th>Max Supply</th>
+                                <th>Pct chg</th>
+                                <th>TVL pct chg</th>
+                                <th>Others</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bitcoin</td>
+                                <td>$59,354</td>
+                                <td>Cryptocurrency</td>
+                                <td>$100B</td>
+                                <td>$1.1T</td>
+                                <td>$1.2T</td>
+                                <td>18.9M BTC</td>
+                                <td>+5.2% </td>
+                                <td>+6.8%</td>
+                                <td>Other data</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Ethereum</td>
+                                <td>$4,050</td>
+                                <td>Cryptocurrency</td>
+                                <td>$80B</td>
+                                <td>$460B</td>
+                                <td>$480B</td>
+                                <td>115M ETH</td>
+                                <td>+8.2%</td>
+                                <td>+9.7%</td>
+                                <td>Other data</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Ripple (XRP)</td>
+                                <td>$1.20</td>
+                                <td>Cryptocurrency</td>
+                                <td>$20B</td>
+                                <td>$60B</td>
+                                <td>$70B</td>
+                                <td>50B XRP</td>
+                                <td>+4.3%</td>
+                                <td>+5.1%</td>
+                                <td>Other data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+                <div class="container" id="coins-favs-container" style="display: none;">
+                    <h6>Your Fav Coins</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped" id="coins-favs-table">
+                            <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Coin</th>
+                                        <th>Price</th>
+                                        <th>Category</th>
+                                        <th>TVL</th>
+                                        <th>MCap</th>
+                                        <th>FDV</th>
+                                        <th>Max Supply</th>
+                                        <th>Pct chg</th>
+                                        <th>TVL pct chg</th>
+                                        <th>Others</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data rows will be added dynamically using JavaScript -->
+                                </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="col-md-4" id="main-right">
+            <div class="card" id="coin-data-card">
+                <div class="card-body">
+                    <h5 class="card-title">Bitcoin</h5>
+                    <h5>$33.000,35</h5>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>MCap:1234</p>
+                        </div>
+                        <div class="col-3">
+                            FDV: 1234
+                        </div>
+                        <div class="col-3">
+                            TVL: $135M
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>Price change</h6>
+                        </div>
+                        
+                    <div class="col-3">24h</div>
+                    <div class="col-3">7d</div>
+                    <div class="col-3">30d</div>
+                    <div class="col-3">90d</div>
+                </div>    
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>Supply</h6>
+                        </div>
+                        <div class="col-3">Circulating</div>
+                        <div class="col-3">Total</div>
+                        <div class="col-3">Max Supply</div>
+                        <div class="col-3">Ratio</div>
+                    </div>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container" id="coins-sub-section">
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow " id="tvl-section">
+            <div class="container p-0">
+<div class="container d-flex" id="title-table">
+                <h6>TVL</h6> 
+                <h6>Total: <span></span> </h6>
+                <h6>Pct chg: <span></span> </h6>
+</div>
+                <div class="table-responsive" id="table-wrapper">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>TVL</th>
+                                <th>pct change</th>
+                                <th>Chains</th>
+                                <th>Other</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>a</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow" id="stablecoins-section">
+            <div class="container p-0">
+                <div class="container d-flex" id="title-table">
+                    <h6 class="p-2">Stablecoins</h6>
+                    <h6>Total: <span></span> </h6>
+                <h6>Pct chg: <span></span> </h6>
+                </div>
+                <div class ="table-responsive" id="table-wrapper">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Chains</th>
+                                <th>TVL</th>
+                                <th>Price</th>
+                                <th>Supply</th>
+                                <th>Type</th>
+                                <th>Other</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>a</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow" id='fees-section'>
+            <div class="container p-0">
+                <div class="container d-flex" id="title-table">
+                <h6>Fees</h6>
+                <h6>Total: <span></span> </h6>
+                <h6>Pct chg: <span></span> </h6>
+                </div>
+                <div class="table-responsive" id="table-wrapper">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Qty</th>
+                                <th>Pct change</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>a</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow" id='dex-section'>
+            <div class="container p-0">
+                <div class="container d-flex" id="title-table">
+                <h6>Volume</h6>
+                <h6>Total: <span></span> </h6>
+                <h6>Pct chg: <span></span> </h6>
+                </div>
+                <div class="table-responsive" id="table-wrapper">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Volume</th>
+                                <th>Pct Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>a</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-light py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>YourCryptoResearch is a leading platform for in-depth crypto market analysis and insights. We strive to provide valuable information to crypto enthusiasts, traders, and investors.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a class="text-light" href="#">Home</a></li>
+                    <li><a class="text-light" href="#">Research Reports</a></li>
+                    <li><a class="text-light" href="#">Blog</a></li>
+                    <li><a class="text-light" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <p>Email: contact@yourcryptoresearch.com</p>
+                <p>Phone: +1 (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <p>&copy; 2023 YourCryptoResearch. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="static/js/javascript.js"></script> 
+
+</body>
+</html>

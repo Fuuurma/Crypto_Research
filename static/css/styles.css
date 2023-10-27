@@ -1,0 +1,162 @@
+/* Light Mode Styles */
+.light-mode {
+    background-color: white;
+    color: #333;
+}
+
+.light-mode .navbar {
+    background-color: #f8f9fa !important;
+    color: #333 !important;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #333 ;
+    color: white;
+}
+
+.dark-mode .navbar {
+    background-color: #333 !important;
+    color: white !important;
+}
+
+.dark-mode .navbar a{
+    color: inherit;
+}
+
+/* non relevant */
+
+#main-left{
+    /* background-color: lightgoldenrodyellow; */
+}
+
+#main-right{
+    background-color: lightsalmon;
+}
+
+/* Adjust the width of specific table columns */
+#coins-general-table th:nth-child(2), 
+#coins-favs-table th:nth-child(2) 
+{
+    width: 25%; 
+}
+
+#coins-general-table th:nth-child(7), 
+#coins-favs-table th:nth-child(7) 
+{
+    width: 5%; 
+}
+
+
+
+
+/* New styles */
+
+#main{
+    /* background-color: lightblue; */
+    width: 95%;
+    min-width: 95%;
+
+    
+    height: 85%;
+    max-height: 700px;
+    min-height: 80%;
+
+    margin: 0 auto;
+    overflow: hidden;
+
+
+   
+}
+
+
+#coins-general-container {
+    height: 85vh;
+    overflow: hidden;
+    
+}
+
+#table-wrapper {
+    height: 100%;
+    overflow: auto;
+}
+
+#coins-general-table {
+    width: 100%; /* Ensure the table takes the full width of its container */
+
+}
+
+
+ /* Sticky headers for the tables */
+ /* #coins-general-table thead,
+ #coins-favs-table thead {
+     position: sticky;
+     top: 0;
+     background-color: #fff;
+     z-index: 1;
+ } */
+
+ /* Keep the # column fixed */
+ /* #coins-general-table th:first-child,
+ #coins-general-table td:first-child,
+ #coins-favs-table th:first-child,
+ #coins-favs-table td:first-child {
+     position: sticky;
+     left: 0;
+     background-color: #fff;
+     z-index: 2;
+     width: 25px;
+ } */
+
+ /* Allow Coin column to scroll horizontally */
+ /* #coins-general-table th:nth-child(2),
+ #coins-general-table td:nth-child(2),
+ #coins-favs-table th:nth-child(2),
+ #coins-favs-table td:nth-child(2) {
+     position: sticky;
+     left: 25px;
+     background-color: #fff;
+     z-index: 1;
+ } */
+
+
+
+#tvl-section, #fees-section, #stablecoins-section, #dex-section{
+    border: 3px solid black;
+    height: 50%;
+    max-height: 700px;
+    padding: 0;
+    border-radius: 5px;
+    width: 100%;
+    background-color: white ;
+    
+}
+
+#coins-sub-section{
+    width: 100%;
+    min-width: 100%;
+}
+
+body{
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: #FCFCFD;
+    
+}
+th{
+    text-align: center;
+    font-weight: bolder;
+    color: White;
+    background-color: #475b9a;
+    font-size: 14px;
+}
+#title-table{
+    background-color: #e0e0e3;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    text-align: center;
+    
+}
+
+
+
