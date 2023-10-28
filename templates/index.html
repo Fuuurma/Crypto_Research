@@ -69,45 +69,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for coin in coins %}
                             <tr>
-                                <td>1</td>
-                                <td>Bitcoin</td>
-                                <td>$59,354</td>
-                                <td>Cryptocurrency</td>
-                                <td>$100B</td>
-                                <td>$1.1T</td>
-                                <td>$1.2T</td>
-                                <td>18.9M BTC</td>
-                                <td>+5.2% </td>
-                                <td>+6.8%</td>
-                                <td>Other data</td>
+                                <td>{{ coin.market_cap_rank }}</td>
+                                <td>{{ coin.name }} {{ coin.symbol}}</td>
+                                <td>{{ coin.current_price }}</td>
+                                <td>{{ coin.category }}</td>
+                                <td>{{ coin.tvl }}</td>
+                                <td>{{ coin.market_cap }}</td>
+                                <td>{{ coin.fully_diluted_valuation }}</td>
+                                <td>{{ coin.max_supply }}</td>
+                                <td>{{ coin.Pct_chg }}</td>
+                                <td>{{ coin.TVL_pct_chg }}</td>
+                                <td>{{ coin.Others }}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Ethereum</td>
-                                <td>$4,050</td>
-                                <td>Cryptocurrency</td>
-                                <td>$80B</td>
-                                <td>$460B</td>
-                                <td>$480B</td>
-                                <td>115M ETH</td>
-                                <td>+8.2%</td>
-                                <td>+9.7%</td>
-                                <td>Other data</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Ripple (XRP)</td>
-                                <td>$1.20</td>
-                                <td>Cryptocurrency</td>
-                                <td>$20B</td>
-                                <td>$60B</td>
-                                <td>$70B</td>
-                                <td>50B XRP</td>
-                                <td>+4.3%</td>
-                                <td>+5.1%</td>
-                                <td>Other data</td>
-                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -191,8 +167,6 @@
 
 
 
-
-
 <div class="container" id="coins-sub-section">
     <div class="row justify-content-center">
         <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow " id="tvl-section">
@@ -208,17 +182,29 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Chain</th>
+                                <th>Category</th>
                                 <th>TVL</th>
-                                <th>pct change</th>
-                                <th>Chains</th>
-                                <th>Other</th>
+                                <th>Mcap</th>
+                                <th>Audits</th>
+                                <th>1d</th>
+                                <th>7d</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for Tvl in tvl %}
                             <tr>
-                                <td>a</td>
-                                <td>2</td>
+                                <td>{{ Tvl.index + 1 }}</td>
+                                <td>{{ Tvl.name }} {{ Tvl.symbol}}</td>
+                                <td>{{ Tvl.chain }}</td>
+                                <td>{{ Tvl.category }}</td>
+                                <td>{{ Tvl.tvl }}</td>
+                                <td>{{ Tvl.mcap }}</td>
+                                <td>{{ Tvl.audits }}</td>
+                                <td>{{ Tvl.change_1d }}</td>
+                                <td>{{ Tvl.change_7d }}</td>
                             </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -238,19 +224,27 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Chains</th>
-                                <th>TVL</th>
                                 <th>Price</th>
-                                <th>Supply</th>
-                                <th>Type</th>
-                                <th>Other</th>
+                                <th>Peg</th>
+                                <th>Circulating</th>
+                                <th>1d</th>
+                                <th>7d</th>
+                                <th>30d</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for stable in stables %}
                             <tr>
-                                <td>a</td>
-                                <td>2</td>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ stable.name }} {{ stable.symbol}}</td>
+                                <td>{{ stable.price }}</td>
+                                <td>{{ stable.pegMechanism }}</td>
+                                <td>{{ stable.circulating }}</td>
+                                <td>{{ stable.circulatingPrevDay }}</td>
+                                <td>{{ stable.circulatingPrevWeek }}</td>
+                                <td>{{ stable.circulatingPrevMonth }}</td>
                             </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -270,16 +264,33 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Qty</th>
-                                <th>Pct change</th>
-                                <th>Revenue</th>
+                                <th>Fees</th>
+                                <th>Category</th>
+                                <th>Volume 1d</th>
+                                <th>change 1d</th>
+                                <th>Volume 7d</th>
+                                <th>Change 7d</th>
+                                <th>Volume 30d</th>
+                                <th>Change 30d</th>
+                                <th>Total All Time</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for fee in fees %}
                             <tr>
-                                <td>a</td>
-                                <td>2</td>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ fee.displayName }}</td>
+                                <td>{{ fee.dailyFees }}</td>
+                                <td>{{ fee.category }}</td>
+                                <td>{{ fee.total24h }}</td>
+                                <td>{{ fee.change_1d }}</td>
+                                <td>{{ fee.total7d }}</td>
+                                <td>{{ fee.change_7d }}</td>
+                                <td>{{ fee.total30d }}</td>
+                                <td>{{ fee.change_30d }}</td>
+                                <td>{{ fee.totalAllTime }}</td>
                             </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -300,14 +311,32 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Volume</th>
-                                <th>Pct Change</th>
+                                <th>Category</th>
+                                <th>Volume 1d</th>
+                                <th>change 1d</th>
+                                <th>Volume 7d</th>
+                                <th>Change 7d</th>
+                                <th>Volume 30d</th>
+                                <th>Change 30d</th>
+                                <th>Total All Time</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for dex in dex_vol %}
                             <tr>
-                                <td>a</td>
-                                <td>2</td>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ dex.name }} {{ dex.symbol}}</td>
+                                <td>{{ dex.dailyVolume }}</td>
+                                <td>{{ dex.category }}</td>
+                                <td>{{ dex.total24h }}</td>
+                                <td>{{ dex.change_1d }}</td>
+                                <td>{{ dex.total7d }}</td>
+                                <td>{{ dex.change_7d }}</td>
+                                <td>{{ dex.total30d }}</td>
+                                <td>{{ dex.change_30d }}</td>
+                                <td>{{ dex.totalAllTime }}</td>
                             </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -315,6 +344,8 @@
         </div>
     </div>
 </div>
+
+<h1>hello</h1>
 
 <footer class="bg-dark text-light py-4 mt-5">
     <div class="container">
