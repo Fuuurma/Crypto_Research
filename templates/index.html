@@ -39,10 +39,16 @@
 
 
 
-<div class="container" id="main">
+<div class="container my-5" id="main">
 
-    <div class="container" mt-3>
-        <input type="text" class="form-control" id="add-coin-favs" placeholder="Search coin...">
+   
+
+    <div class="container my-3">
+        <div class="btn-group">
+            <input type="text" class="form-control w-75" id="add-coin-favs" placeholder="Search coin...">
+            <button class="btn btn-outline-dark w-25">Search</button>
+        </div>
+        
     </div>
 
     <div class="row">
@@ -71,8 +77,17 @@
                         <tbody>
                             {% for coin in coins %}
                             <tr>
-                                <td>{{ coin.market_cap_rank }}</td>
-                                <td>{{ coin.name }} {{ coin.symbol}}</td>
+                                <td class="">
+                                    <span class="bi bi-star"></span>
+                                    {{ coin.market_cap_rank }}
+                                </td>
+
+                                <td class="d-flex">
+                                    <img src="{{ coin.image }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ coin.name}}">
+                                    <p class="font-weight-bold mx-1">
+                                        {{ coin.name }} <span id="ticker-span">[ {{ coin.symbol}} ] </span> 
+                                    </p>
+                                </td>
                                 <td>{{ coin.current_price }}</td>
                                 <td>{{ coin.category }}</td>
                                 <td>{{ coin.tvl }}</td>
@@ -170,19 +185,20 @@
 <div class="container" id="coins-sub-section">
     <div class="row justify-content-center">
         <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow " id="tvl-section">
-            <div class="container p-0">
-<div class="container d-flex" id="title-table">
+
+            <div class="container d-flex" id="title-table">
                 <h6>TVL</h6> 
                 <h6>Total: <span></span> </h6>
                 <h6>Pct chg: <span></span> </h6>
-</div>
+            </div>
+
+            <div class="container p-0">
                 <div class="table-responsive" id="table-wrapper">
                     <table class="table table-sm table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Chain</th>
                                 <th>Category</th>
                                 <th>TVL</th>
                                 <th>Mcap</th>
@@ -193,10 +209,13 @@
                         </thead>
                         <tbody>
                             {% for Tvl in tvl %}
-                            <tr>
-                                <td>{{ Tvl.index + 1 }}</td>
-                                <td>{{ Tvl.name }} {{ Tvl.symbol}}</td>
-                                <td>{{ Tvl.chain }}</td>
+                                <td>{{ Tvl.index + 1 }}</td> 
+                                <td class="d-flex">
+                                    <img src="{{ Tvl.logo }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ Tvl.name}}">
+                                    <p class="font-weight-bold mx-1">
+                                        {{ Tvl.name }} <span id="ticker-span">[ {{ Tvl.symbol}} ] </span> 
+                                    </p>
+                                </td>
                                 <td>{{ Tvl.category }}</td>
                                 <td>{{ Tvl.tvl }}</td>
                                 <td>{{ Tvl.mcap }}</td>
@@ -236,7 +255,11 @@
                             {% for stable in stables %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ stable.name }} {{ stable.symbol}}</td>
+                                <td>
+                                    <p class="font-weight-bold mx-1">
+                                        {{ stable.name }} <span id="ticker-span">[ {{ stable.symbol}} ] </span> 
+                                    </p>
+                                </td>
                                 <td>{{ stable.price }}</td>
                                 <td>{{ stable.pegMechanism }}</td>
                                 <td>{{ stable.circulating }}</td>
@@ -274,12 +297,16 @@
                                 <th>Change 30d</th>
                                 <th>Total All Time</th>
                             </tr>
-                        </thead>
+                                
+                            </thead> 
                         <tbody>
                             {% for fee in fees %}
                             <tr>
-                                <td>{{ loop.index }}</td>
-                                <td>{{ fee.displayName }}</td>
+                                <td>{{ loop.index }}</td> 
+                                <td class="d-flex">
+                                    <img src="{{ fee.logo}}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ fee.displayName}}">  
+                                   <p class="font-weight-bold mx-1"> {{ fee.displayName }} </p> 
+                                </td>
                                 <td>{{ fee.dailyFees }}</td>
                                 <td>{{ fee.category }}</td>
                                 <td>{{ fee.total24h }}</td>
@@ -325,7 +352,10 @@
                             {% for dex in dex_vol %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ dex.name }} {{ dex.symbol}}</td>
+                                <td class="d-flex">
+                                    <img src="{{ dex.logo}}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ dex.displayName}}">
+                                   <p class="font-weight-bold mx-1"> {{ dex.displayName }} <span id="ticker-span">[ {{ dex.symbol}} ]</span></p> 
+                                </td>
                                 <td>{{ dex.dailyVolume }}</td>
                                 <td>{{ dex.category }}</td>
                                 <td>{{ dex.total24h }}</td>

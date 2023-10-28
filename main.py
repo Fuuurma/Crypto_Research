@@ -8,7 +8,6 @@ from queries import (get_coins_data, get_tvl_data, get_stablecoins_data,
 
 
 
-
 app = Flask(__name__)
 
 

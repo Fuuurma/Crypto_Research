@@ -155,9 +155,17 @@ th{
     background-color: #f7f7f7;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    text-align: center;
-    
+    text-align: center;  
+}
+
+#coin-logo-table{
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
 }
 
 
-
+#ticker-span{
+    color: #475b9a;
+    font-size: 10px;
+}
