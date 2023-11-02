@@ -6,6 +6,7 @@
     <title>Crypto Research</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -64,13 +65,17 @@
                                 <th>#</th>
                                 <th>Coin</th>
                                 <th>Price</th>
-                                <th>Category</th>
                                 <th>TVL</th>
                                 <th>MCap</th>
                                 <th>FDV</th>
                                 <th>Max Supply</th>
-                                <th>Pct chg</th>
-                                <th>TVL pct chg</th>
+                                <th>Price 1d</th>
+                                <th>Price 7d</th>
+                                <th>Price 14d</th>
+                                <th>Price 30d</th>
+                                <th>Price 200d</th>
+                                <th>Price 1y</th>
+                                <th>Tvl 24h</th>
                                 <th>Others</th>
                             </tr>
                         </thead>
@@ -78,25 +83,27 @@
                             {% for coin in coins %}
                             <tr>
                                 <td class="">
-                                    <span class="bi bi-star"></span>
                                     {{ coin.market_cap_rank }}
+                                    <i class="bi bi-star"></i>
                                 </td>
 
-                                <td class="d-flex">
+                                <td class="d-flex justify-content-center align-content-center">
                                     <img src="{{ coin.image }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ coin.name}}">
                                     <p class="font-weight-bold mx-1">
-                                        {{ coin.name }} <span id="ticker-span">[ {{ coin.symbol}} ] </span> 
+                                        {{ coin.name }} <span id="ticker-span">[{{ coin.symbol | upper}}]</span> 
                                     </p>
                                 </td>
                                 <td>{{ coin.current_price }}</td>
-                                <td>{{ coin.category }}</td>
-                                <td>{{ coin.tvl }}</td>
-                                <td>{{ coin.market_cap }}</td>
-                                <td>{{ coin.fully_diluted_valuation }}</td>
-                                <td>{{ coin.max_supply }}</td>
-                                <td>{{ coin.Pct_chg }}</td>
-                                <td>{{ coin.TVL_pct_chg }}</td>
-                                <td>{{ coin.Others }}</td>
+                                <td class="number">{{ coin.tvl }}</td>
+                                <td class="number">{{ coin.market_cap }}</td>
+                                <td class="number">{{ coin.fully_diluted_valuation }}</td>
+                                <td class="number">{{ coin.max_supply }}</td>
+                                <td class="pct-change">{{ coin.price_change_percentage_24h_in_currency }}</td>
+                                <td class="pct-change">{{ coin.price_change_percentage_7d_in_currency }}</td>
+                                <td class="pct-change">{{ coin.price_change_percentage_14d_in_currency }}</td>
+                                <td class="pct-change">{{ coin.price_change_percentage_30d_in_currency }}</td>
+                                <td class="pct-change">{{ coin.price_change_percentage_200d_in_currency }}</td>
+                                <td class="pct-change">{{ coin.price_change_percentage_1y_in_currency }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -187,9 +194,9 @@
         <div class="col-xl-3 col-md-5 col-sm-12 mb-5 mx-4 shadow " id="tvl-section">
 
             <div class="container d-flex" id="title-table">
-                <h6>TVL</h6> 
-                <h6>Total: <span></span> </h6>
-                <h6>Pct chg: <span></span> </h6>
+                <h1 id="table-title">TVL</h1> 
+                <h6 id="table-title-data">Total: <span>{{ global_tvl.tvl_total }}</span></h6>
+                <h6 id="table-title-data"># Protocols:<span>{{ global_tvl.total}}</span></h6>
             </div>
 
             <div class="container p-0">
@@ -201,7 +208,6 @@
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>TVL</th>
-                                <th>Mcap</th>
                                 <th>Audits</th>
                                 <th>1d</th>
                                 <th>7d</th>
@@ -209,19 +215,21 @@
                         </thead>
                         <tbody>
                             {% for Tvl in tvl %}
-                                <td>{{ Tvl.index + 1 }}</td> 
+                                <td>
+                                    {{ Tvl.index + 1 }}
+                                    <i class="bi bi-star"></i>
+                                </td> 
                                 <td class="d-flex">
                                     <img src="{{ Tvl.logo }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ Tvl.name}}">
                                     <p class="font-weight-bold mx-1">
-                                        {{ Tvl.name }} <span id="ticker-span">[ {{ Tvl.symbol}} ] </span> 
+                                        {{ Tvl.name }} <span id="ticker-span">[{{ Tvl.symbol}}]</span> 
                                     </p>
                                 </td>
                                 <td>{{ Tvl.category }}</td>
-                                <td>{{ Tvl.tvl }}</td>
-                                <td>{{ Tvl.mcap }}</td>
+                                <td class="number">{{ Tvl.tvl }}</td>
                                 <td>{{ Tvl.audits }}</td>
-                                <td>{{ Tvl.change_1d }}</td>
-                                <td>{{ Tvl.change_7d }}</td>
+                                <td class="pct-change">{{ Tvl.change_1d }}</td>
+                                <td class="pct-change">{{ Tvl.change_7d }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -254,18 +262,24 @@
                         <tbody>
                             {% for stable in stables %}
                             <tr>
-                                <td>{{ loop.index }}</td>
+                                <td>
+                                    {{ loop.index }}
+                                    <i class="bi bi-star"></i>
+                                </td>
                                 <td>
                                     <p class="font-weight-bold mx-1">
-                                        {{ stable.name }} <span id="ticker-span">[ {{ stable.symbol}} ] </span> 
+                                        {{ stable.name }} <span id="ticker-span">[{{ stable.symbol}}]</span> 
                                     </p>
                                 </td>
-                                <td>{{ stable.price }}</td>
+                                <td> {% if stable.price is not none %}
+                                    {{ stable.price | round(3) }}
+                                    {% else %} - {% endif %}
+                                </td>
                                 <td>{{ stable.pegMechanism }}</td>
-                                <td>{{ stable.circulating }}</td>
-                                <td>{{ stable.circulatingPrevDay }}</td>
-                                <td>{{ stable.circulatingPrevWeek }}</td>
-                                <td>{{ stable.circulatingPrevMonth }}</td>
+                                <td class="number">{{ stable.circulating }}</td>
+                                <td class="number">{{ stable.circulatingPrevDay }}</td>
+                                <td class="number">{{ stable.circulatingPrevWeek }}</td>
+                                <td class="number">{{ stable.circulatingPrevMonth }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -302,20 +316,23 @@
                         <tbody>
                             {% for fee in fees %}
                             <tr>
-                                <td>{{ loop.index }}</td> 
+                                <td>
+                                    {{ loop.index }}
+                                    <i class="bi bi-star"></i>
+                                </td> 
                                 <td class="d-flex">
                                     <img src="{{ fee.logo}}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ fee.displayName}}">  
                                    <p class="font-weight-bold mx-1"> {{ fee.displayName }} </p> 
                                 </td>
-                                <td>{{ fee.dailyFees }}</td>
+                                <td class="number">{{ fee.dailyFees }}</td>
                                 <td>{{ fee.category }}</td>
-                                <td>{{ fee.total24h }}</td>
-                                <td>{{ fee.change_1d }}</td>
-                                <td>{{ fee.total7d }}</td>
-                                <td>{{ fee.change_7d }}</td>
-                                <td>{{ fee.total30d }}</td>
-                                <td>{{ fee.change_30d }}</td>
-                                <td>{{ fee.totalAllTime }}</td>
+                                <td class="number">{{ fee.total24h }}</td>
+                                <td class="pct-change">{{ fee.change_1d }}</td>
+                                <td class="number">{{ fee.total7d }}</td>
+                                <td class="pct-change">{{ fee.change_7d }}</td>
+                                <td class="number">{{ fee.total30d }}</td>
+                                <td class="pct-change">{{ fee.change_30d }}</td>
+                                <td class="number">{{ fee.totalAllTime }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -351,20 +368,23 @@
                         <tbody>
                             {% for dex in dex_vol %}
                             <tr>
-                                <td>{{ loop.index }}</td>
+                                <td>
+                                    {{ loop.index }}
+                                    <i class="bi bi-star"></i>
+                                </td>
                                 <td class="d-flex">
                                     <img src="{{ dex.logo}}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ dex.displayName}}">
-                                   <p class="font-weight-bold mx-1"> {{ dex.displayName }} <span id="ticker-span">[ {{ dex.symbol}} ]</span></p> 
+                                   <p class="font-weight-bold mx-1"> {{ dex.displayName }} <span id="ticker-span">[{{ dex.symbol}}]</span></p> 
                                 </td>
-                                <td>{{ dex.dailyVolume }}</td>
+                                <td class="number">{{ dex.dailyVolume }}</td>
                                 <td>{{ dex.category }}</td>
-                                <td>{{ dex.total24h }}</td>
-                                <td>{{ dex.change_1d }}</td>
-                                <td>{{ dex.total7d }}</td>
-                                <td>{{ dex.change_7d }}</td>
-                                <td>{{ dex.total30d }}</td>
-                                <td>{{ dex.change_30d }}</td>
-                                <td>{{ dex.totalAllTime }}</td>
+                                <td class="number">{{ dex.total24h }}</td>
+                                <td class="pct-change">{{ dex.change_1d }}</td>
+                                <td class="number">{{ dex.total7d }}</td>
+                                <td class="pct-change">{{ dex.change_7d }}</td>
+                                <td class="number">{{ dex.total30d }}</td>
+                                <td class="pct-change">{{ dex.change_30d }}</td>
+                                <td class="number">{{ dex.totalAllTime }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

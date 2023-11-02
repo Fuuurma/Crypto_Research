@@ -39,3 +39,81 @@ $(document).ready(function() {
     });
 });
 
+
+
+// Formatting Number functions
+
+document.addEventListener('DOMContentLoaded', function()
+{
+    format_all_numbers();
+});
+
+
+
+function format_all_numbers()
+{
+    const numbers = document.querySelectorAll('.number');
+    const pct_changes = document.querySelectorAll('.pct-change');
+
+    numbers.forEach((element) => {
+        const value = parseFloat(element.textContent);
+
+        if (!isNaN(value))
+        {
+            const changed_value = format_number(value);
+            element.textContent = changed_value;
+        }
+    });
+
+    pct_changes.forEach((element) => {
+        const value = parseFloat(element.textContent);
+
+        if (!isNaN(value))
+        {
+            if (value > 0)
+            {
+                element.classList.add('text-success');
+            }
+            else if (value < 0)
+            {
+                element.classList.add('text-danger');
+            }
+            else if (value == 0)
+            {
+                element.classList.add('text-dark');
+            }
+            
+            const changed_value = format_pct_change(value);
+            element.textContent = changed_value;
+        }
+        
+    }
+    )
+}
+
+
+function format_number(number)
+{
+    if (isNaN(number))
+    {
+        return '-';
+    }
+    
+    if (Math.abs(number) >= 1e12) {
+        return '$' + (number / 1e12).toFixed(2) + 'T';
+      } else if (Math.abs(number) >= 1e9) {
+        return '$' + (number / 1e9).toFixed(2) + 'B';
+      } else if (Math.abs(number) >= 1e6) {
+        return '$' + (number / 1e6).toFixed(2) + 'M';
+      } else if (Math.abs(number) >= 1e3) {
+        return '$' + (number / 1e3).toFixed(2) + 'K';
+      } else {
+        return '$' + number.toFixed(2);
+      }
+}
+
+
+function format_pct_change(number)
+{
+    return number.toFixed(2) + '%';
+}

@@ -119,10 +119,14 @@
      z-index: 1;
  } */
 
+ #table-wrapper{
+    border: 3px solid black;
+    height: 100%;
+    max-height: 700px;
+ }
 
 
 #tvl-section, #fees-section, #stablecoins-section, #dex-section{
-    border: 3px solid black;
     max-height: 700px;
     padding: 0;
     border-radius: 5px;
@@ -168,4 +172,9 @@ th{
 #ticker-span{
     color: #475b9a;
     font-size: 10px;
+}
+
+#coin-logo-table{
+width: 20px;
+height: 20px;
 }

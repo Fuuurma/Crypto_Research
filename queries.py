@@ -19,8 +19,19 @@ def get_tvl_data():
         data = [dict(row) for row in result]
         
         return data
+
+def get_global_tvl():
+    with db_connection() as connection:
+        result = connection.execute("CALL Get_total_tvl")        
+        return result
     
-    
+def get_tvl_by_categories():
+    with db_connection() as connection:
+        result = connection.execute("CALL Get_tvl_by_category")
+        
+        data = [dict (row) for row in result]
+        return data
+        
     
 
 def get_stablecoins_data():
@@ -45,3 +56,5 @@ def get_fees_data():
         result = connection.execute("CALL Get_fees_general_table")
         data = [dict(row) for row in result]
         return data
+
+
