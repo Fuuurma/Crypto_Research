@@ -24,6 +24,32 @@ def home():
     return render_template('index.html', coins = coins, tvl = tvl, global_tvl = global_tvl,
                            tvl_categories = tvl_categories, dex_vol=dex_vol, fees=fees,stables = stables
                            )
+    
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    
+    return render_template('login.html')
+
+
+@app.route('/tvl', methods = ['GET', 'POST'])
+def tvl():
+    
+    return render_template('tvl.html')
+
+
+@app.route('/fees', methods = ['GET', 'POST'])
+def fees():
+    
+    return render_template('fees.html')
+
+
+@app.route('/stablecoins', methods = ['GET', 'POST'])
+def stablecoins():
+    
+    return render_template('stablecoins.html')
+
+
 
 
 
