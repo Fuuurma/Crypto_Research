@@ -69,7 +69,7 @@
             <div class="container" id="coins-general-container">
                 <h6>Top Coins</h6>
                 <div class="table-responsive" id="table-wrapper">
-                    <table class="table table-sm table-bordered table-striped align-middle" id="coins-general-table">
+                    <table class="table table-sm  table-striped align-middle" id="coins-general-table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -92,12 +92,12 @@
                         <tbody>
                             {% for coin in coins %}
                             <tr>
-                                <td class="">
+                                <td class="ap">
                                     {{ coin.market_cap_rank }}
-                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-heart"></i>
                                 </td>
 
-                                <td class="d-flex justify-content-center align-content-center">
+                                <td class="d-flex">
                                     <img src="{{ coin.image }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ coin.name}}">
                                     <p class="font-weight-bold mx-1">
                                         {{ coin.name }} <span id="ticker-span">[{{ coin.symbol | upper}}]</span> 
@@ -227,7 +227,7 @@
                             {% for Tvl in tvl %}
                                 <td>
                                     {{ Tvl.index + 1 }}
-                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-heart"></i>
                                 </td> 
                                 <td class="d-flex">
                                     <img src="{{ Tvl.logo }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ Tvl.name}}">
@@ -274,7 +274,7 @@
                             <tr>
                                 <td>
                                     {{ loop.index }}
-                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-heart"></i>
                                 </td>
                                 <td>
                                     <p class="font-weight-bold mx-1">
@@ -328,7 +328,7 @@
                             <tr>
                                 <td>
                                     {{ loop.index }}
-                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-heart"></i>
                                 </td> 
                                 <td class="d-flex">
                                     <img src="{{ fee.logo}}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ fee.displayName}}">  
@@ -380,7 +380,7 @@
                             <tr>
                                 <td>
                                     {{ loop.index }}
-                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-heart"></i>
                                 </td>
                                 <td class="d-flex">
                                     <img src="{{ dex.logo}}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ dex.displayName}}">

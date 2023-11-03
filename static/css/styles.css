@@ -38,7 +38,7 @@
 #coins-general-table th:nth-child(2), 
 #coins-favs-table th:nth-child(2) 
 {
-    width: 25%; 
+    width: 15%; 
 }
 
 #coins-general-table th:nth-child(7), 
@@ -118,7 +118,7 @@
      background-color: #fff;
      z-index: 1;
  } */
-
+.ap{text-align: start;}
  #table-wrapper{
     border: 3px solid black;
     height: 100%;
