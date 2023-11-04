@@ -5,7 +5,7 @@ import pandas as pd
 from configs import (db_connection)
 from queries import (get_coins_data, get_tvl_data, get_stablecoins_data,
                      get_dex_volume_data, get_fees_data, get_global_tvl, 
-                     get_tvl_by_categories)
+                     get_tvl_by_categories, test_coin_data)
 
 
 
@@ -21,8 +21,10 @@ def home():
     stables = get_stablecoins_data()
     dex_vol = get_dex_volume_data()
     fees = get_fees_data()
+    btc = test_coin_data()
     return render_template('index.html', coins = coins, tvl = tvl, global_tvl = global_tvl,
-                           tvl_categories = tvl_categories, dex_vol=dex_vol, fees=fees,stables = stables
+                           tvl_categories = tvl_categories, dex_vol=dex_vol, fees=fees,stables = stables,
+                           btc = btc
                            )
     
 
@@ -30,6 +32,11 @@ def home():
 def login():
     
     return render_template('login.html')
+
+@app.route('/new_user', methods = ['GET', 'POST'])
+def new_user():
+    
+    return render_template('new_user.html')
 
 
 @app.route('/tvl', methods = ['GET', 'POST'])
@@ -40,8 +47,8 @@ def tvl():
 
 @app.route('/fees', methods = ['GET', 'POST'])
 def fees():
-    
-    return render_template('fees.html')
+    fees = get_fees_data()
+    return render_template('fees.html', fees = fees)
 
 
 @app.route('/stablecoins', methods = ['GET', 'POST'])

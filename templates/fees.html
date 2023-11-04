@@ -1,15 +1,186 @@
-{% extends 'index.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Bootstrap Template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"></head>
+<body>
 
-{% block title %}
-    Fees
-{% endblock %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Left Section -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Crypto Research
+            </a>
+        </div>
+
+        <!-- Middle Section (Centered) -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">TVL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Chains</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Stables</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Volume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Fees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">NFTs</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Section -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Register</a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline">
+                    <input class="form-control" type="text" placeholder="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
 
 
-{% block content %}
 
-<h1 id="title">TVL</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Container -->
+            <div class="col-lg-8 bg-light p-4" style="height: 80vh;">
+              <div class="btn-group">
+                <input type="text" class="form-control w-75" id="add-coin-favs" placeholder="Search coin...">
+                <button class="btn btn-outline-danger w-25">Search</button>
+              </div>
+
+              <h1>Fees</h1>
+
+              <div class="table-responsive-sm" style="max-height: 60vh; overflow-y: auto;">
+                <table class="table table-striped table-borderless table-sm" id="test">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" id="table-name-column">Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Fees 24h</th>
+                      <th scope="col">Volume 7d</th>
+                      <th scope="col">Volume 30d</th>
+                      <th scope="col">Total All Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for fee in fees %}
+                    <tr>
+                      <th scope="row">
+                        {{ loop.index }}
+                        <i class="bi bi-heart"></i>
+                      </th>
+                      <td>
+                        <img src="{{ fee.logo }}" alt="img of {{fee.displayName}}" id="coin-logo-table" class="d-inline img-fluid rounded-circle">
+                        <p class="font-weight-bold d-inline"> {{ fee.displayName }} </p>
+                      </td>
+
+                        <td>{{ fee.category }}</td>
+                        <td class="">
+                          <p class="number d-inline"> 
+                            {{ fee.total24h }}
+                          </p> 
+                            <p class="pct-change d-inline ml-1">
+                              {{ fee.change_1d }}
+                            </p>
+                        </td>
+
+                        <td>
+                          <p class="number d-inline"> 
+                            {{ fee.total7d }}
+                          </p>
+                            <p class="pct-change d-inline ml-1">
+                              {{ fee.change_7d }}
+                            </p>
+                        </td>
+                        
+                        <td>
+                          <p class="number d-inline"> 
+                            {{ fee.total30d }}
+                          </p>
+                            <p class="pct-change d-inline ml-1">
+                              {{ fee.change_30d }}
+                          </p>
+                        </td>
+
+                        <td class="number">{{ fee.totalAllTime }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
+
+
+
+            <!-- Right Container -->
+            <div class="col-lg-4 bg-info" style="height: 80vh;">
+                <!-- Content for the right container -->
+                <!-- Adjust content as needed -->
+            </div>
+        </div>
+        <div class="row">
+            <!-- Bottom Container -->
+            <div class="col-12 bg-primary" style="min-height: 300px; max-height: 700px;">
+                <!-- Content for the bottom container -->
+                <!-- Adjust content as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  
+  <script src="static/js/javascript.js"></script> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!-- 
+  <h1 id="title">TVL</h1>
 
 <table class="table">
 
@@ -54,5 +225,4 @@
       </li>
     </ul>
   </nav>
-
-{% endblock %}
+ -->

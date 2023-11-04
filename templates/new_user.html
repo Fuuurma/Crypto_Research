@@ -1,24 +1,25 @@
 {% extends 'index.html' %}
 
 {% block title %}
-    Login
+    Register
 {% endblock %}
 
 
-
-
 {% block content %}
-
-
-
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
+                
                 <div class="card-body mx-3">
-                    <h2>Login</h2>
+
+                    <h2>Register</h2>
                     <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
@@ -28,20 +29,17 @@
                             <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
+                            <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+                            <label class="form-check-label" for="acceptTerms">I accept the <a href="terms.html" target="_blank">Terms & Conditions</a></label>
                         </div>
-                        <a href="forgot-password.html" class="d-block mt-2">Forgot Password?</a>
-                        <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Register</button>
                     </form>
-                    <p class="text-center mt-2 mb-0">Don't have an account? <a href="register.html">Create one</a></p>
+                    <p class="text-center mt-2 mb-0">Already an user? <a href="{{ url_for('login') }}">Login</a></p>
                 </div>
             </div>
-            <p class="text-center mt-4 mb-0">Copyright &copy; 2023 &mdash; Crypto Research </p> 
+            <p class="text-center mt-4 mb-0">Copyright © 2023 — Crypto Research</p>
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}

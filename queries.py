@@ -8,7 +8,18 @@ def get_coins_data():
         # Convert the result set to a list of dictionaries
         data = [dict(row) for row in result]
 
-        return data
+        return data[:100]
+    
+
+def test_coin_data():
+    with db_connection() as connection:
+        # Call the stored procedure and retrieve the results
+        result = connection.execute("CALL Get_coins_general_table()")  
+
+        # Convert the result set to a list of dictionaries
+        data = [dict(row) for row in result]
+
+        return data[:1]
     
     
 
@@ -18,7 +29,7 @@ def get_tvl_data():
         
         data = [dict(row) for row in result]
         
-        return data
+        return data[:100]
 
 def get_global_tvl():
     with db_connection() as connection:
@@ -40,7 +51,7 @@ def get_stablecoins_data():
         
         data = [dict(row) for row in result]
         
-        return data
+        return data[:100]
 
 
 
@@ -48,13 +59,13 @@ def get_dex_volume_data():
     with db_connection() as connection:
         result = connection.execute("CALL Get_dex_volume_general_table")
         data = [dict(row) for row in result]
-        return data
+        return data[:100]
 
 
 def get_fees_data():
     with db_connection() as connection:
         result = connection.execute("CALL Get_fees_general_table")
         data = [dict(row) for row in result]
-        return data
+        return data[:100]
 
 

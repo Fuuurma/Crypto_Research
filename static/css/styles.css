@@ -178,3 +178,74 @@ th{
 width: 20px;
 height: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Just for testing */
+
+
+#test{
+
+}
+
+#table-name-column{
+    width: 150px; /* Set your desired fixed width */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
+}
+
+#test tbody tr {
+    vertical-align: middle; /* Vertically center the content */
+    align-items: center;
+}
+
+#test td {
+    text-align: center; /* Horizontally center the content */
+}
+
+#xyz{
+    flex-wrap: nowrap;
+}
+
+
+/* 
+
+
+{% extends 'index.html' %}
+
+{% block title %}
+    Fees
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="container" id="main-content">
+  <div class="container" id="left-container">
+
+  </div>
+  <div class="container" id="right-container">
+
+  </div>
+
+  <div class="container" id="bottom-container">
+
+  </div>
+</div>
+
+
+{% endblock %}
+*/
