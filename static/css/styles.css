@@ -146,7 +146,6 @@ body{
     font-family: Calibri, 'Trebuchet MS', sans-serif;
     font-size: 14px;
     background-color: #f7f7f7;
-    
 }
 th{
     text-align: center;
@@ -249,3 +248,5 @@ height: 20px;
 
 {% endblock %}
 */
+
+

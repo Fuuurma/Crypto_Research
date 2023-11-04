@@ -43,10 +43,11 @@ $(document).ready(function() {
 
 // Formatting Number functions
 
-document.addEventListener('DOMContentLoaded', function()
+$(document).ready(function()
 {
     format_all_numbers();
-});
+})
+
 
 
 
@@ -117,3 +118,26 @@ function format_pct_change(number)
 {
     return number.toFixed(2) + '%';
 }
+
+
+
+
+//  Login & Register Functions to Show Password
+
+$(document).ready(function()
+{
+    $('#showPassword').click(function() {
+        const passwordInput = $('#password');
+        const passwordFieldType = passwordInput.attr('type');
+        const showPasswordIcon = $('#showPassword');
+
+        if (passwordFieldType === 'password') {
+            passwordInput.attr('type', 'text');
+            showPasswordIcon.removeClass('bi bi-eye-slash').addClass('bi bi-eye');
+
+        } else {
+            passwordInput.attr('type', 'password');
+            showPasswordIcon.removeClass('bi bi-eye').addClass('bi bi-eye-slash');
+        }
+    });
+});
