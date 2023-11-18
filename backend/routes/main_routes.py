@@ -2,6 +2,7 @@ from flask import Blueprint, render_template
 from models.coin_model import Coin
 from models.protocol_model import Protocol
 from models.tvl_historic_model import Tvl_historic
+from models.fees_model import Fees
 from app import db
 
 from queries import (get_coins_data, get_tvl_data, get_stablecoins_data,
@@ -37,18 +38,6 @@ def new_user():
     return render_template('new_user.html')
 
 
-@main_routes.route('/tvl', methods = ['GET', 'POST'])
-def tvl():
-    
-    return render_template('tvl.html')
-
-
-@main_routes.route('/fees', methods = ['GET', 'POST'])
-def fees():
-    fees = get_fees_data()
-    return render_template('fees.html', fees = fees)
-
-
 @main_routes.route('/stablecoins', methods = ['GET', 'POST'])
 def stablecoins():
     
@@ -65,4 +54,3 @@ def test():
     return render_template('test.html', d=tvl_historic.date if tvl_historic else "No records found")
 
 
-# Add more routes as needed
