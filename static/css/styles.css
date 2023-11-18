@@ -141,7 +141,7 @@
     min-width: 100%;
     overflow: hidden;
 }
-
+    vertical-align: top;
 body{
     font-family: Calibri, 'Trebuchet MS', sans-serif;
     font-size: 14px;
