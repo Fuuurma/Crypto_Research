@@ -3,7 +3,7 @@ from models.coin_model import (Coin, get_coin_data, get_coins_data)
 from models.protocol_model import Protocol # function top 100 tvl
 from models.tvl_historic_model import Tvl_historic
 from app import db
-import request
+import requests
 from queries import (get_coins_data, get_tvl_data, get_stablecoins_data,
                      get_dex_volume_data, get_fees_data, get_global_tvl, 
                      get_tvl_by_categories, test_coin_data)
@@ -22,8 +22,8 @@ def home(): # forget all this functions by the moment. theyre old
     btc = test_coin_data()
     
     # new
-    page = request.args.get('page', 1, type=int)
-    coins_pagination = get_coins_data(page)
+    # page = requests.args.get('page', 1, type=int)
+    # coins_pagination = get_coins_data(page)
     return render_template('index.html', coins=coins, tvl=tvl, global_tvl=global_tvl,
                            tvl_categories=tvl_categories, dex_vol=dex_vol, fees=fees, stables=stables,
                            btc=btc

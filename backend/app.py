@@ -3,8 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_login import LoginManager
 
-
-db = SQLAlchemy() 
+# Define multiple SQLAlchemy instances for different databases
+db = SQLAlchemy()
+db_protocols_tvl = SQLAlchemy()
+db_protocols_historic_tvl_by_chain = SQLAlchemy()
+db_protocols_historic_tvl_by_tokens = SQLAlchemy()
+db_coins = SQLAlchemy()
 
 def create_app(config_filename=None):
     app = Flask(__name__)
@@ -15,11 +19,21 @@ def create_app(config_filename=None):
 
     app.template_folder = '../templates'
     
-    # Set up the database
+
+    # Set up the database connections for different databases
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:240699@127.0.0.1:3306/dashboard'
+    app.config['SQLALCHEMY_BINDS'] = {
+        'protocols_tvl': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_tvl',
+        'protocols_historic_tvl_by_chain': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_historic_tvl_by_chain',
+        'protocols_historic_tvl_by_tokens': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_historic_tvl_by_tokens',
+        'coins': 'mysql+pymysql://root:240699@127.0.0.1:3306/coins',
+        # 'stablecoins': 'mysql+pymysql://root:240699@127.0.0.1:3306/stablecoins',
+    }
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.init_app(app)
-    login_manager = LoginManager(app)
+    
+
+    # login_manager = LoginManager(app)
     
     
     
