@@ -39,3 +39,25 @@ class Coin(db.Model):
 
     def __repr__(self):
         return f"<Coin: {self.id} ({self.symbol})>"
+    
+    
+# Helper functions
+def get_coins_data(page=1, per_page=100):
+    coins_data = Coin.query.paginate(page, per_page, error_out=False)
+    return coins_data
+
+
+def get_coin_data(coin_symbol='BTC'):
+    coin_data = Coin.query.filter_by(symbol=coin_symbol).first()
+    return coin_data
+
+def get_x_coins_by_category(number_of_coins=10, category='market_cap', top=True):
+    order_column = getattr(Coin, category, None)
+    if order_column is not None:
+        coins_data_ordered = Coin.query.order_by(order_column.desc() 
+                                                    if top else order_column.asc())
+        .limit(number_of_coins).all()
+        return coins_data_ordered
+    else:
+        # Handle invalid category
+        return []

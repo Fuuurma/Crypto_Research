@@ -1,4 +1,4 @@
-# routes/test_routes.py
+# routes/pools_routes.py
 
 from flask import Blueprint, render_template
 from models.pools_model import Pool

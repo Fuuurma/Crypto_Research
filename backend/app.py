@@ -1,6 +1,8 @@
 # app.py
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
+from flask_login import LoginManager
+
 
 db = SQLAlchemy() 
 
@@ -17,6 +19,8 @@ def create_app(config_filename=None):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:240699@127.0.0.1:3306/dashboard'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
+    login_manager = LoginManager(app)
+    
     
     
     # Register blueprints, middleware, etc.
@@ -29,5 +33,7 @@ def create_app(config_filename=None):
     app.register_blueprint(fees_routes, url_prefix='/fees')  # You can set a prefix for the URL
     app.register_blueprint(tvl_routes, url_prefix='/tvl')
     app.register_blueprint(pools_routes, url_prefix='/pools')
+    
+    
 
     return app
