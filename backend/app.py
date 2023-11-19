@@ -23,9 +23,11 @@ def create_app(config_filename=None):
     from routes.main_routes import main_routes
     from routes.fees_routes import fees_routes
     from routes.tvl_routes import tvl_routes
+    from routes.pools_routes import pools_routes
     
     app.register_blueprint(main_routes)
     app.register_blueprint(fees_routes, url_prefix='/fees')  # You can set a prefix for the URL
     app.register_blueprint(tvl_routes, url_prefix='/tvl')
+    app.register_blueprint(pools_routes, url_prefix='/pools')
 
     return app

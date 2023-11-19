@@ -38,11 +38,6 @@ def new_user():
     return render_template('new_user.html')
 
 
-@main_routes.route('/stablecoins', methods = ['GET', 'POST'])
-def stablecoins():
-    
-    return render_template('stablecoins.html')
-
 
 @main_routes.route('/test')
 def test():

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Pools
+{% endblock %}
+
+
+
+
+{% block content %}
+<h1>Test Pools</h1>
+<ul>
+    {% for pool in pools %}
+        <li>{{ pool.name }} - {{ pool.symbol }} - {{ pool.totalLiquidity }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
