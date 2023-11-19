@@ -1,4 +1,3 @@
-# Example in models/coin_model.py
 from app import db
 
 
@@ -55,8 +54,7 @@ def get_x_coins_by_category(number_of_coins=10, category='market_cap', top=True)
     order_column = getattr(Coin, category, None)
     if order_column is not None:
         coins_data_ordered = Coin.query.order_by(order_column.desc() 
-                                                    if top else order_column.asc())
-        .limit(number_of_coins).all()
+                                                    if top else order_column.asc()).limit(number_of_coins).all()
         return coins_data_ordered
     else:
         # Handle invalid category
