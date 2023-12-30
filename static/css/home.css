@@ -1,0 +1,96 @@
+body{
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: #161A1D;
+    color: #E9F2FF;
+}
+
+nav{
+    background-color: #071936;
+    color: #E9F2FF;
+    border-bottom: 2px #E9F2FF solid;
+
+}
+ul li a {
+    color: #E9F2FF;
+    font-size: 20px;
+}
+
+
+table {
+    color: #E9F2FF;
+    width: 100%;
+    max-width: 100%;
+    overflow-y: auto;
+
+}
+thead {
+    color: #E9F2FF;
+    background-color: #071936;
+}
+tbody {
+    overflow-y: auto;
+    max-height: 60vh;
+    color: #E9F2FF;
+    background-color: #091E42;
+}
+
+#home-coin-table-container {
+    height: 80vh;
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    overflow-y: auto; 
+    background-color: #091E42;
+}
+
+#coin-logo-table{
+    width: 20px;
+    height: 20px;
+    }
+    
+
+
+
+#sub-table{
+    max-height: 65vh; 
+    overflow-y: auto;
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    background-color: #091E42;
+    padding-left: 8px;
+
+}
+
+
+#section-data{
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    /* background-color: #091E42; */
+    background: linear-gradient(to right, #091E42, #071936, #061631);
+    height: 100px;
+    min-height: 100px;
+}
+
+/* Define the scrollbar style for all elements */
+::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+    height: 8px;
+}
+
+
+/* Define the style for the scrollbar track (the area on which the thumb moves) */
+::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+/* Define the style for the scrollbar thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+    background-color: #808080; 
+    border-radius: 6px; 
+}
+
+::-webkit-scrollbar-button, ::-webkit-scrollbar-corner{
+    background-color: transparent; 
+    height: 3px;
+}
+

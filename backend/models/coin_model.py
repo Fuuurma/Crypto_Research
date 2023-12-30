@@ -1,34 +1,38 @@
-from app import db_coins
+from app import db
 
-class Coin(db_coins.Model):
-    __tablename__ = 'coins_general'
-    id = db_coins.Column(db_coins.Integer, primary_key=True)
-    symbol = db_coins.Column(db_coins.String(50))
-    name = db_coins.Column(db_coins.String(100))
-    image = db_coins.Column(db_coins.String(255))
-    current_price = db_coins.Column(db_coins.Float)
-    market_cap = db_coins.Column(db_coins.Float)
-    fully_diluted_valuation = db_coins.Column(db_coins.Float)
-    total_volume = db_coins.Column(db_coins.Float)
-    high_24h = db_coins.Column(db_coins.Float)
-    low_24h = db_coins.Column(db_coins.Float)
-    price_change_24h = db_coins.Column(db_coins.Float)
-    price_change_percentage_24h = db_coins.Column(db_coins.Float)
-    circulating_supply = db_coins.Column(db_coins.Float)
-    total_supply = db_coins.Column(db_coins.Float)
-    max_supply = db_coins.Column(db_coins.Float)
-    ath = db_coins.Column(db_coins.Float)
-    ath_change_percentage = db_coins.Column(db_coins.Float)
-    ath_date = db_coins.Column(db_coins.String(50))
-    atl = db_coins.Column(db_coins.Float)
-    atl_change_percentage = db_coins.Column(db_coins.Float)
-    atl_date = db_coins.Column(db_coins.String(50))
-    last_updated = db_coins.Column(db_coins.String(50))
-    price_change_1Y = db_coins.Column(db_coins.Float)
-    price_change_200d = db_coins.Column(db_coins.Floaty)
-    price_change_24h = db_coins.Column(db_coins.Float)
-    price_change_30d = db_coins.Column(db_coins.Float)
-    price_change_7d = db_coins.Column(db_coins.Float)
+class Coin(db.Model):
+    __tablename__ = 'general'
+    __bind_key__ = 'coins'
+    id = db.Column(db.Integer, primary_key=True)
+    symbol = db.Column(db.String(50))
+    name = db.Column(db.String(100))
+    image = db.Column(db.String(255))
+    current_price = db.Column(db.Float)
+    market_cap = db.Column(db.Float)
+    fully_diluted_valuation = db.Column(db.Float)
+    total_volume = db.Column(db.Float)
+    high_24h = db.Column(db.Float)
+    low_24h = db.Column(db.Float)
+    price_change_24h = db.Column(db.Float)
+    price_change_percentage_24h = db.Column(db.Float)
+    circulating_supply = db.Column(db.Float)
+    total_supply = db.Column(db.Float)
+    max_supply = db.Column(db.Float)
+    ath = db.Column(db.Float)
+    # ath_change_percentage = db.Column(db.Float)
+    ath_date = db.Column(db.String(50))
+    atl = db.Column(db.Float)
+    atl_change_percentage = db.Column(db.Float)
+    atl_date = db.Column(db.String(50))
+    last_updated = db.Column(db.String(50))
+    price_change_1Y = db.Column(db.Float)
+    price_change_200d = db.Column(db.Float)
+    price_change_24h = db.Column(db.Float)
+    price_change_30d = db.Column(db.Float)
+    price_change_7d = db.Column(db.Float)
+    
+    # users = db_coins.relationship('User', secondary='user_fav_coins', backref=db_coins.backref('favorite_coins', lazy='dynamic'))
+
 
     def __repr__(self):
         return f"<Coin: {self.id} ({self.symbol})>"
@@ -37,7 +41,8 @@ class Coin(db_coins.Model):
     
 # Helper functions
 def get_coins_data(page=1, per_page=100):
-    coins_data = Coin.query.paginate(page, per_page, error_out=False)
+    # coins_data = Coin.query.paginate(page, per_page, error_out=False)
+    coins_data = Coin.query.limit(100).all()
     return coins_data
 
 

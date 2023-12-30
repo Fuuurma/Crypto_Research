@@ -4,6 +4,7 @@ from app import db
 
 class Pool(db.Model):
     __tablename__ = 'pools_general'
+    __bind_key__ = 'dashboard'
     id = db.Column(db.Integer, primary_key=True)
     chain = db.Column(db.String(50))
     project = db.Column(db.String(50))

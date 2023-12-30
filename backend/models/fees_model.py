@@ -4,6 +4,7 @@ from app import db
 
 class Fees(db.Model):
     __tablename__ = 'fees_general'
+    __bind_key__ = 'dashboard'
     defillamaId = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     disabled = db.Column(db.String(1))

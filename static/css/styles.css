@@ -48,7 +48,9 @@
 }
 
 
-
+body {
+    background-color: black !important;
+}
 
 /* New styles */
 

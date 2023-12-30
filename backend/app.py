@@ -5,10 +5,9 @@ from flask_login import LoginManager
 
 # Define multiple SQLAlchemy instances for different databases
 db = SQLAlchemy()
-db_protocols_tvl = SQLAlchemy()
-db_protocols_historic_tvl_by_chain = SQLAlchemy()
-db_protocols_historic_tvl_by_tokens = SQLAlchemy()
-db_coins = SQLAlchemy()
+
+# Initialize LoginManager
+# login_manager = LoginManager()
 
 def create_app(config_filename=None):
     app = Flask(__name__)
@@ -18,15 +17,18 @@ def create_app(config_filename=None):
         app.config.from_pyfile(config_filename)
 
     app.template_folder = '../templates'
+    app.static_folder = '../static'
     
 
     # Set up the database connections for different databases
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:240699@127.0.0.1:3306/dashboard'
     app.config['SQLALCHEMY_BINDS'] = {
+        'dashboard': 'mysql+pymysql://root:240699@127.0.0.1:3306/dashboard',
         'protocols_tvl': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_tvl',
         'protocols_historic_tvl_by_chain': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_historic_tvl_by_chain',
         'protocols_historic_tvl_by_tokens': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_historic_tvl_by_tokens',
         'coins': 'mysql+pymysql://root:240699@127.0.0.1:3306/coins',
+        'users' : 'mysql+pymysql://root:240699@127.0.0.1:3306/users' 
         # 'stablecoins': 'mysql+pymysql://root:240699@127.0.0.1:3306/stablecoins',
     }
 
@@ -42,12 +44,18 @@ def create_app(config_filename=None):
     from routes.fees_routes import fees_routes
     from routes.tvl_routes import tvl_routes
     from routes.pools_routes import pools_routes
+    # from routes.auth_routes import user_routes
     
     app.register_blueprint(main_routes)
-    app.register_blueprint(fees_routes, url_prefix='/fees')  # You can set a prefix for the URL
+    app.register_blueprint(fees_routes, url_prefix='/fees')  
     app.register_blueprint(tvl_routes, url_prefix='/tvl')
     app.register_blueprint(pools_routes, url_prefix='/pools')
+    # app.register_blueprint(user_routes, url_prefix='/user')
     
+    # Configure LoginManager
+    # login_manager.init_app(app)
+    # login_manager.login_view = 'user.login'  # 'user.login' is the endpoint for the login route
     
 
+    db.init_app(app)
     return app

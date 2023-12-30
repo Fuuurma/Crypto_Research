@@ -4,6 +4,7 @@ from app import db
 
 class Stablecoin(db.Model):
     __tablename__ = 'stablecoins_general'
+    __bind_key__ = 'dashboard'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
     symbol = db.Column(db.String(10))
