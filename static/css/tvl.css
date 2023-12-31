@@ -1,0 +1,33 @@
+#left{
+    min-height: 500px;
+    border: 2px solid black;
+}
+
+#right{
+    min-height: 500px;
+    border: 2px solid white;
+
+}
+
+#test{
+    min-height: 30px;
+    background-color: antiquewhite;
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+}
+
+#tvl-table {
+    max-width: 90%;
+    overflow-y: auto !important; 
+    max-height: 80vh;
+}
+
+#protocols-container, #chains-container {
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    overflow-y: scroll !important;
+    max-height: 100%;
+    background-color: #091E42;
+}
+

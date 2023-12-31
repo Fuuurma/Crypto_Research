@@ -35,6 +35,10 @@ tbody {
     background-color: #091E42;
 }
 
+footer{
+    background: linear-gradient(to right, #091E42, #071936, #061631);
+}
+
 #home-coin-table-container {
     height: 80vh;
     border: 2px solid #E9F2FF;

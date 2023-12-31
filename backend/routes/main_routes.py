@@ -1,25 +1,33 @@
 from flask import Blueprint, render_template
-from models.coin_model import (Coin, get_coin_data, get_coins_data)
+from models.coin_model import ( Coin, get_coin_data, get_coins_data )
 from models.protocol_model import (Protocol) # function top 100 tvl
 from models.tvl_historic_model import Tvl_historic
+from models.stablecoin_model import Stablecoin
 from app import db
 import requests
 from queries import ( get_tvl_data, get_stablecoins_data,
                      get_dex_volume_data, get_fees_data, get_global_tvl, 
-                     get_tvl_by_categories, test_coin_data)
+                     get_tvl_by_categories, test_coin_data )
 
 # get_coins_data
-main_routes = Blueprint('main', __name__)
+main_routes = Blueprint( 'main', __name__ )
 
-@main_routes.route('/', methods = ['GET', 'POST'])
+@main_routes.route( '/', methods = [ 'GET', 'POST' ] )
 def home(): # forget all this functions by the moment. theyre old
     coins = get_coins_data()
-    tvl = Protocol.get_protocols_data() #get_tvl_data()
-    global_tvl = Protocol.get_actual_TVL() # get_global_tvl()
+    
+    tvl = Protocol.get_protocols_data() 
+    global_tvl = Protocol.get_actual_TVL() 
     tvl_top5_dominance = Protocol.get_dominance_pct()
     tvl_number_of_protocols = Protocol.get_number_of_protocols()
     tvl_categories = get_tvl_by_categories()
-    stables = get_stablecoins_data()
+    
+    stables = Stablecoin.get_stables_data() # get_stablecoins_data()
+    stables_tvl = Stablecoin.get_actual_TVL()
+    number_of_stables = Stablecoin.get_number_of_stables()
+    off_peg_number = Stablecoin.get_stables_offpeg()
+    stables_top5_dominance = Stablecoin.get_dominance_pct( 5 )
+    
     dex_vol = get_dex_volume_data()
     fees = get_fees_data()
     btc = test_coin_data()
@@ -27,9 +35,10 @@ def home(): # forget all this functions by the moment. theyre old
     # new
     # page = requests.args.get('page', 1, type=int)
     # coins_pagination = get_coins_data(page)
-    return render_template('index.html', coins=coins, tvl=tvl, global_tvl=global_tvl, tvl_top5_dominance= tvl_top5_dominance,
-                           tvl_categories=tvl_categories, dex_vol=dex_vol, fees=fees, stables=stables,
-                           btc=btc, tvl_number_of_protocols = tvl_number_of_protocols
+    return render_template('index.html', coins = coins, tvl = tvl, global_tvl = global_tvl, tvl_top5_dominance = tvl_top5_dominance,
+                           tvl_categories = tvl_categories, dex_vol = dex_vol, fees = fees, 
+                           stables = stables, stables_tvl = stables_tvl, number_of_stables = number_of_stables, off_peg_number = off_peg_number, stables_top5_dominance = stables_top5_dominance,
+                           btc = btc, tvl_number_of_protocols = tvl_number_of_protocols
                            )
     
 
