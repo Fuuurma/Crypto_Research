@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    {{ protocol_data.name }}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div id="protocol-hero-container">
+    <div class="row">
+        <div class="col-8">
+
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="div" id="protocol-data-container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th id="table-name-column">Name</th>
+                    <th>Category</th>
+                    <th>Slug</th>
+                    <th>mcap</th>
+                    <th>TVL</th>
+                    <th>twitter</th>
+                    <th>Chain</th>
+                    <th>Url</th>
+                    <th>Address</th>
+                    <th>Audits</th>
+                    <th>1h</th>
+                    <th>1d</th>
+                    <th>7d</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proto in protocol_data %}
+                <tr>
+                    <td class="" data-protocol-id="{{ proto.id }}">
+                        {{ proto.index + 1 }}
+                    </td> 
+                    <td class="d-flex" data-protocol-id="{{ proto.id }}">
+                        <img src="{{ proto.logo }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ proto.name}}">
+                        <p class="font-weight-bold mx-1">
+                            {{ proto.name }} <span id="ticker-span">[{{ proto.symbol}}]</span> 
+                        </p>
+                    </td>
+                    <td>{{ proto.category }}</td>
+                    <td>{{ proto.slug }}</td>
+                    <td>{{ proto.mcap }}</td>
+                    <td class="number">{{ proto.tvl }}</td>
+                    <td>{{ proto.twitter }}</td>
+                    <td>{{ proto.chain }}</td>
+                    <td>{{ proto.url }}</td>
+                    <td>{{ proto.address }}</td>
+                    <td>{{ proto.audits }}</td>
+                    <td class="pct-change">{{ proto.change_1h }}</td>
+                    <td class="pct-change">{{ proto.change_1d }}</td>
+                    <td class="pct-change">{{ proto.change_7d }}</td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

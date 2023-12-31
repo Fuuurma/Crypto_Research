@@ -25,7 +25,7 @@
             +++
         </div>
         <div class="col-12 col-md-4" id="right">
-            <div class="row">
+            <div class="row d-flex justify-content-between">
 
             </div>
             <div class="row">
@@ -52,11 +52,11 @@
     </div>
 </div>
 
-<div id="tvl-table" class="mx-auto text-center mt-5 p-2">
+<div id="tvl-table" class="mx-auto ml-3 text-center mt-5">
     <div class="row">
         <div class="col-6 p-4" id="protocols-container">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped table-borderless table-sm table align-middle">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -71,10 +71,10 @@
                     <tbody>
                         {% for Tvl in tvl_table %}
                         <tr>
-                            <td>
+                            <td class="protocol-row" data-protocol-id="{{ Tvl.id }}">
                                 {{ Tvl.index + 1 }}
                             </td> 
-                            <td class="d-flex">
+                            <td class="d-flex protocol-row" data-protocol-id="{{ Tvl.id }}">
                                 <img src="{{ Tvl.logo }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ Tvl.name}}">
                                 <p class="font-weight-bold mx-1">
                                     {{ Tvl.name }} <span id="ticker-span">[{{ Tvl.symbol}}]</span> 
@@ -93,7 +93,7 @@
         </div>
         <div class="col-6 p-4" id="chains-container">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped table-borderless table-sm table align-middle">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -106,10 +106,10 @@
                     <tbody>
                         {% for chain in chain_table %}
                         <tr>
-                            <td>
+                            <td class="chain-row" data-protocol-id="{{ chain.gecko_id }}">
                                 {{ loop.index }}
                             </td> 
-                            <td class="d-flex">
+                            <td class="d-flex chain-row" data-protocol-id="{{ chain.gecko_id }} ">
                                 <img src="{{ chain.image }}" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ chain.gecko_id}}">
                                 <p class="font-weight-bold mx-1">
                                     {{ chain.gecko_id }} <span id="ticker-span">[{{ chain.tokenSymbol}}]</span> 
@@ -131,3 +131,6 @@
 
 
 {% endblock %}
+
+
+    

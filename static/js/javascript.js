@@ -1,43 +1,43 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const app = document.getElementById('app');
-    const modeToggle = document.getElementById('mode-toggle');
-    const navbar = document.querySelector('.navbar');
-    const savedMode = localStorage.getItem('mode');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const app = document.getElementById('app');
+//     const modeToggle = document.getElementById('mode-toggle');
+//     const navbar = document.querySelector('.navbar');
+//     const savedMode = localStorage.getItem('mode');
 
-    function setMode(mode) {
-        app.classList.remove('light-mode', 'dark-mode');
-        navbar.classList.remove('light-mode', 'dark-mode');
-        app.classList.add(mode);
-        navbar.classList.add(mode);
-        localStorage.setItem('mode', mode);
-    }
+//     function setMode(mode) {
+//         app.classList.remove('light-mode', 'dark-mode');
+//         navbar.classList.remove('light-mode', 'dark-mode');
+//         app.classList.add(mode);
+//         navbar.classList.add(mode);
+//         localStorage.setItem('mode', mode);
+//     }
 
-    modeToggle.addEventListener('click', function () {
-        if (app.classList.contains('light-mode')) {
-            setMode('dark-mode');
-        } else {
-            setMode('light-mode');
-        }
-    });
+//     modeToggle.addEventListener('click', function () {
+//         if (app.classList.contains('light-mode')) {
+//             setMode('dark-mode');
+//         } else {
+//             setMode('light-mode');
+//         }
+//     });
 
-    if (savedMode) {
-        setMode(savedMode);
-    }
-});
+//     if (savedMode) {
+//         setMode(savedMode);
+//     }
+// });
 
 
-$(document).ready(function() {
-    // Initial state: Show the general table and hide the favorite table
-    $('#coins-general-container').show();
-    $('#coins-favs-container').hide();
+// $(document).ready(function() {
+//     // Initial state: Show the general table and hide the favorite table
+//     $('#coins-general-container').show();
+//     $('#coins-favs-container').hide();
 
-    // Handle button click
-    $('#toggle-table-button').on('click', function() {
-        // Toggle the visibility of the general and favorite tables
-        $('#coins-general-container').toggle();
-        $('#coins-favs-container').toggle();
-    });
-});
+//     // Handle button click
+//     $('#toggle-table-button').on('click', function() {
+//         // Toggle the visibility of the general and favorite tables
+//         $('#coins-general-container').toggle();
+//         $('#coins-favs-container').toggle();
+//     });
+// });
 
 
 
@@ -139,5 +139,30 @@ $(document).ready(function()
             passwordInput.attr('type', 'password');
             showPasswordIcon.removeClass('bi bi-eye').addClass('bi bi-eye-slash');
         }
+    });
+});
+
+
+// For Protocols
+document.addEventListener('DOMContentLoaded', function() {
+    var rows = document.querySelectorAll('.protocol-row');
+    rows.forEach(function(row) {
+        row.addEventListener('click', function() {
+            var protocolId = row.getAttribute('data-protocol-id');
+            var url = 'protocols/' + protocolId;
+            window.location.href = url;
+        });
+    });
+});
+
+// For Chains
+document.addEventListener('DOMContentLoaded', function() {
+    var rows = document.querySelectorAll('.chain-row');
+    rows.forEach(function(row) {
+        row.addEventListener('click', function() {
+            var chain = row.getAttribute('data-protocol-id');
+            var url = 'chains/' + chain;
+            window.location.href = url;
+        });
     });
 });

@@ -102,5 +102,10 @@ class Protocol( db.Model ):
     def search_protocols_by_name( keyword ):
         protocols = Protocol.query.filter( Protocol.name.ilike( f"%{ keyword }%" )).all()
         return protocols
+    
+    @staticmethod
+    def search_protocols_by_id( id ):
+        protocols = Protocol.query.filter( Protocol.id == id ).all()
+        return protocols
 
 

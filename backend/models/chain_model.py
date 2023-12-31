@@ -21,6 +21,11 @@ class Chain( db.Model ):
         data = Chain.query.limit( 100 ).all()
         return data 
     
+    @staticmethod
+    def get_chain_data( id ):
+        chain = Chain.query.filter( Chain.gecko_id == id ).all()
+        return chain
+    
     
     
     

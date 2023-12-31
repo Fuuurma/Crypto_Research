@@ -1,6 +1,6 @@
 # routes/tvl_routes.py
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, url_for
 from models.tvl_historic_model import Tvl_historic
 from models.protocol_model import Protocol
 from models.chain_model import Chain
@@ -29,7 +29,18 @@ def protocols():
     tvl_table = Protocol.get_protocols_data()
     return render_template('protocols.html', tvl_table = tvl_table )
 
+@tvl_routes.route('/protocols/<int:id>', methods=['GET', 'POST'])
+def protocol(id):
+    protocol_data = Protocol.search_protocols_by_id(id)
+    return render_template('protocol.html', protocol_data=protocol_data)
+
+
 @tvl_routes.route('/chains', methods = ['GET', 'POST'])
 def chains():
-    tvl_data = Protocol.query.limit(10).all()
-    return render_template('chains.html', tvl=tvl_data)
+    chains_data = Chain.get_chains_data()
+    return render_template('chains.html', chains_data = chains_data )
+
+@tvl_routes.route('/chains/<string:id>', methods=['GET', 'POST'])
+def chain(id):
+    chain_data = Chain.get_chain_data(id)
+    return render_template('chain.html', chain_data=chain_data)

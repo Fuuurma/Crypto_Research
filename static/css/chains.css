@@ -1,0 +1,9 @@
+
+#chains-data-container{
+    width: 90%;
+    margin: auto;
+    height: 80vh;
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    overflow-y: auto;
+}
