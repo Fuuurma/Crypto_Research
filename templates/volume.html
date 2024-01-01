@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Chains
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/chains.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    Volume Historic
+
+    todays Volume <br>
+    This week Volume <br>
+    this Months Volume <br>
+    This Years Volume <br>
+    Cumulative Volume <br>
+
+
+    <div>
+        {{ volume_historic_plot | safe }}
+    </div>
+
+
+
+    <div>
+        days with greatest volume <br>
+        days with lesser volume <br>
+        where is the volume <br>
+        who makes the volume? <br>
+        protocolls <-> chains <br>
+
+    </div>
+
+
+
+    <div class="table-responsive">
+        <table class="table table-striped table-borderless table-sm table align-middle">
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th>Module</th>
+                <th>Category</th>
+                <th>Change 1D</th>
+                <th>Change 7D</th>
+                <th>Change 1M</th>
+                <th>Change 7D Over 7D</th>
+                <th>Change 30D Over 30D</th>
+                <th>Total 24H</th>
+                <th>Total 48H to 24H</th>
+                <th>Total 7D</th>
+                <th>Total 30D</th>
+                <th>Total 14D to 7D</th>
+                <th>Total 60D to 30D</th>
+                <th>Total All Time</th>
+                <th>Methodology URL</th>
+                <th>Version Key</th>
+                <th>Daily Volume</th>
+                <th>Parent Protocol</th>
+          </thead>
+          <tbody>
+            {% for dex in volume_general %}
+            <tr>
+                    <td class="table-name-column">
+                        <img src="{{ dex.logo }}" alt="logo of {{ dex.name }}" id="coin-logo-table" class="d-inline img-fluid rounded-circle">
+                        {{ dex.display_name }}
+                    </td>
+                    
+                    <td>{{ dex.module }}</td>
+                    <td>{{ dex.category }}</td>
+                    <td class="pct-change">{{ dex.change_1d }}</td>
+                    <td class="pct-change">{{ dex.change_7d }}</td>
+                    <td class="pct-change">{{ dex.change_1m }}</td>
+                    <td class="pct-change" >{{ dex.change_7dover7d }}</td>
+                    <td class="pct-change">{{ dex.change_30dover30d }}</td>
+                    <td class="number">{{ dex.total24h }}</td>
+                    <td class="number" >{{ dex.total48hto24h }}</td>
+                    <td class="number">{{ dex.total7d }}</td>
+                    <td class="number">{{ dex.total30d }}</td>
+                    <td class="number">{{ dex.total14dto_7d }}</td>
+                    <td class="number">{{ dex.total60dto30d }}</td>
+                    <td class="number">{{ dex.total_all_time }}</td>
+                    <td>{{ dex.methodologyUrl }}</td>
+                    <td>{{ dex.versionKey }}</td>
+                    <td class="number">{{ dex.dailyVolume }}</td>
+                    <td>{{ dex.parentProtocol }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>  
+
+
+{% endblock %}

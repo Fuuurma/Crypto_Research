@@ -9,4 +9,89 @@
 
 {% block content %}
 
+
+
+<div id="tvl-hero-container">
+    <div class="row">
+        <div class="col-12 col-md-8" id="left">
+            tvl plot <br>
+            Some tvl data <br>
+            Actual tvl <br>
+            pct change 1, 7, 30, 90, 1y <br>
+            dominance: Top 5 protocols
+            Top 5 Categories <br>
+            depegged currencies witha form to control the pct <br>
+            stablecoin distribution by chain <br>
+            Coins that are stablecoin related <br>
+            +++
+        </div>
+        <div class="col-12 col-md-4" id="right">
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <div class="col-8" id="test">
+
+                </div>
+                <div class="col-4" id="test">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2" id="test">1d</div>
+                <div class="col-2" id="test">7d</div>
+                <div class="col-2" id="test">30d</div>
+                <div class="col-2" id="test">90d</div>
+                <div class="col-2" id="test">180d</div>
+                <div class="col-2" id="test">1y</div>
+            </div>
+            <div class="row">
+                <div class="col-6" id="test">Dominance Protocols</div>
+                <div class="col-6" id="test">Dominance Chains</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="tvl-table" class="mx-auto text-center mt-5">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th id="table-name-column">Name</th>
+                    <th>Peg Type</th>
+                    <th>Peg Mechanism</th>
+                    <th>Circulating</th>
+                    <th>price</th>
+                    <th>M.Cap</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stable in stablecoin %}
+                <tr>
+                    <td>
+                        {{ loop.index}}
+                    </td> 
+                    <td class="d-flex">
+                        <img src="" id="coin-logo-table" class="img-fluid rounded-circle" alt="img of {{ stable.name}}">
+                        <p class="font-weight-bold mx-1">
+                            {{ stable.name }} <span id="ticker-span">[{{ stable.symbol}}]</span> 
+                        </p>
+                    </td>
+                    <td>{{ stable.pegType }}</td>
+                    <td class="number">{{ stable.pegMechanism }}</td>
+                    <td class="number">{{ stable.circulating }}</td>
+                    <td>{{ stable.price }}</td>
+                    <td class="number">{{ stable.market_cap }}</td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 {% endblock %}
