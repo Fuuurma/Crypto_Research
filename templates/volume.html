@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/chains.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/volume.css') }}">
 {% endblock %}
 
 
@@ -19,7 +19,7 @@
     Cumulative Volume <br>
 
 
-    <div>
+    <div id="volume-plot">
         {{ volume_historic_plot | safe }}
     </div>
 
@@ -35,11 +35,12 @@
     </div>
 
 
+    <div id="volume-general-container">
 
     <div class="table-responsive">
         <table class="table table-striped table-borderless table-sm table align-middle">
-          <thead>
-            <tr>
+          <thead id="head-test">
+            <tr id="row-test">
                 <th>Name</th>
                 <th>Module</th>
                 <th>Category</th>
@@ -91,6 +92,6 @@
           </tbody>
         </table>
     </div>  
-
+</div>
 
 {% endblock %}

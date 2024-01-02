@@ -1,0 +1,26 @@
+#volume-general-container{
+    margin: auto;
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    overflow-y: auto; 
+    background-color: #091E42;
+    width: 90%;
+    height: 80vh;
+
+}
+#volume-plot{
+    width: 60%;
+    margin: auto;
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    padding: 3px;
+    padding-right: 9px;
+}
+
+#head-test{
+    background-color: #2f3135;
+}
+
+#row-test{
+    margin: 8px;
+}

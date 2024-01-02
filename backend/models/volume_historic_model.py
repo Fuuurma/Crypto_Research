@@ -67,7 +67,7 @@ class Volume_Historic(db.Model):
             yaxis=dict(linecolor='black', linewidth=4, showgrid=True, gridcolor='#E9F2FF' ), 
             yaxis2=dict(linecolor='black', linewidth=4, showgrid=True, gridcolor='#161A1D' ),  
             xaxis2=dict(linecolor='black', linewidth=4, showgrid=False, gridcolor='#161A1D' ),  
-            font=dict(family="Calibri, sans-serif", size=12, color="#E9F2FF")  # Font style
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")  # Font style
         )
 
         # Convert the plot to HTML

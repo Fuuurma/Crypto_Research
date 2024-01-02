@@ -54,7 +54,7 @@ class Stablecoin( db.Model ):
 
     @staticmethod
     def get_stablecoins_by_peg_type( peg_type ):
-        stablecoins = Stablecoin.query.filter_by( pegType=peg_type ).all()
+        stablecoins = Stablecoin.query.filter_by( pegType = peg_type ).all()
         return stablecoins
 
     @staticmethod
