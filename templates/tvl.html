@@ -16,13 +16,8 @@
 <div id="tvl-hero-container">
     <div class="row">
         <div class="col-12 col-md-8" id="left">
-            tvl plot <br>
-            Some tvl data <br>
-            Actual tvl <br>
-            pct change 1, 7, 30, 90, 1y <br>
-            dominance: Top 5 protocols
-            Top 5 Categories <br>
-            +++
+            {{ tvl_plot | safe }}
+            
         </div>
         <div class="col-12 col-md-4" id="right">
             <div class="row d-flex justify-content-between">
@@ -48,6 +43,13 @@
                 <div class="col-6" id="test">Dominance Protocols</div>
                 <div class="col-6" id="test">Dominance Chains</div>
             </div>
+            tvl plot <br>
+            Some tvl data <br>
+            Actual tvl <br>
+            pct change 1, 7, 30, 90, 1y <br>
+            dominance: Top 5 protocols
+            Top 5 Categories <br>
+            +++
         </div>
     </div>
 </div>

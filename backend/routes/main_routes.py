@@ -3,6 +3,7 @@ from models.coin_model import ( Coin, get_coin_data, get_coins_data )
 from models.protocol_model import (Protocol) # function top 100 tvl
 from models.tvl_historic_model import Tvl_historic
 from models.stablecoin_model import Stablecoin
+from models.volume_historic_model import Volume_Historic
 from app import db
 import requests
 from queries import ( get_tvl_data, get_stablecoins_data,
@@ -21,14 +22,17 @@ def home(): # forget all this functions by the moment. theyre old
     tvl_top5_dominance = Protocol.get_dominance_pct()
     tvl_number_of_protocols = Protocol.get_number_of_protocols()
     tvl_categories = get_tvl_by_categories()
+    tvl_plot = Tvl_historic.get_tvl_line_chart()
     
     stables = Stablecoin.get_stables_data() # get_stablecoins_data()
     stables_tvl = Stablecoin.get_actual_TVL()
     number_of_stables = Stablecoin.get_number_of_stables()
     off_peg_number = Stablecoin.get_stables_offpeg()
     stables_top5_dominance = Stablecoin.get_dominance_pct( 5 )
+    stables_pie_plot = Stablecoin.get_stablecoins_pie_chart()
     
     dex_vol = get_dex_volume_data()
+    vol_plot = Volume_Historic.get_volume_line_chart()
     fees = get_fees_data()
     btc = test_coin_data()
     
@@ -38,7 +42,8 @@ def home(): # forget all this functions by the moment. theyre old
     return render_template('index.html', coins = coins, tvl = tvl, global_tvl = global_tvl, tvl_top5_dominance = tvl_top5_dominance,
                            tvl_categories = tvl_categories, dex_vol = dex_vol, fees = fees, 
                            stables = stables, stables_tvl = stables_tvl, number_of_stables = number_of_stables, off_peg_number = off_peg_number, stables_top5_dominance = stables_top5_dominance,
-                           btc = btc, tvl_number_of_protocols = tvl_number_of_protocols
+                           btc = btc, tvl_number_of_protocols = tvl_number_of_protocols, tvl_plot = tvl_plot, vol_plot = vol_plot, stables_pie_plot= stables_pie_plot
+                           
                            )
     
 

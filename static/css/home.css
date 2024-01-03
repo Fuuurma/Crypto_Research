@@ -75,6 +75,13 @@ footer{
     min-height: 100px;
 }
 
+#section-plot{
+    max-height: 65vh; 
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    padding: 2px;
+}
+
 /* Define the scrollbar style for all elements */
 ::-webkit-scrollbar {
     width: 8px; /* Set the width of the scrollbar */

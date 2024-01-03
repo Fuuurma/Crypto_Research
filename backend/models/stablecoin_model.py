@@ -1,6 +1,9 @@
 # models/stablecoin_model.py
 
 from app import db
+import plotly.graph_objects as go
+import plotly.io as pio
+
 
 class Stablecoin( db.Model ):
     __tablename__ = 'stablecoins_general'
@@ -81,3 +84,37 @@ class Stablecoin( db.Model ):
         dominance_pct = (top_stables_tvl / total_tvl) * 100 if total_tvl else 0.0
         data = [ top_stables_tvl, dominance_pct ]
         return data
+    
+    
+        # this will create a plotly pie chart using the top x stables. 
+        # If other coins is false will use only the top coins. If is true will use the top x + another pie piece will be the other y stables left
+        
+    @staticmethod
+    def get_stablecoins_pie_chart(top=10, other_stables=True):
+        stables_data = Stablecoin.query.order_by(Stablecoin.market_cap.desc()).limit(top).all()
+
+        labels = [stable.name for stable in stables_data]
+        values = [stable.market_cap for stable in stables_data]
+
+        if other_stables:
+            # Include an "Other" category with the combined market cap of remaining stables
+            other_stables_data = Stablecoin.query.order_by(Stablecoin.market_cap.desc()).offset(top).all()
+            if other_stables_data:
+                labels.append("Other Stables")
+                values = [stable.market_cap if stable.market_cap is not None else 0 for stable in stables_data]
+
+        # Create the pie chart
+        fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+
+        # Update layout
+        fig.update_layout(
+            title='Stablecoins Market Capitalization Distribution',
+            plot_bgcolor='#091E42',
+            paper_bgcolor='#091E42',
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+        )
+
+        # Convert the plot to HTML
+        plot_html = pio.to_html(fig, full_html=False)
+
+        return plot_html        
