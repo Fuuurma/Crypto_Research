@@ -29,7 +29,8 @@ def create_app(config_filename=None):
         'protocols_historic_tvl_by_tokens': 'mysql+pymysql://root:240699@127.0.0.1:3306/protocols_historic_tvl_by_tokens',
         'coins': 'mysql+pymysql://root:240699@127.0.0.1:3306/coins',
         'users' : 'mysql+pymysql://root:240699@127.0.0.1:3306/users',
-        'volume' : 'mysql+pymysql://root:240699@127.0.0.1:3306/dex_volume' 
+        'volume' : 'mysql+pymysql://root:240699@127.0.0.1:3306/dex_volume',
+        'fees' : 'mysql+pymysql://root:240699@127.0.0.1:3306/fees' 
         # 'stablecoins': 'mysql+pymysql://root:240699@127.0.0.1:3306/stablecoins',
     }
 

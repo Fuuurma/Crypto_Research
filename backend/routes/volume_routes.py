@@ -11,5 +11,11 @@ def volume():
     volume_historic_plot = Volume_Historic.get_volume_line_chart()
     
     volume_general = Volume.get_volume_data()
+    
+    all_time_plot = Volume.get_volume_bar_chart_top25()
+    categories_plot = Volume.get_volume_line_chart()
+    # xxx = Volume.get_x_best_n_worst_performers_plot()
     return render_template( 'volume.html', historic_volume = historic_volume, volume_historic_plot = volume_historic_plot,
-                           volume_general = volume_general )
+                           volume_general = volume_general, all_time_plot = all_time_plot, categories_plot = categories_plot,
+                        #    xxx = xxx
+                           )

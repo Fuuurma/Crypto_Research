@@ -7,6 +7,6 @@ fees_routes = Blueprint('fees', __name__)
 
 @fees_routes.route('/fees', methods = ['GET', 'POST'])
 def fees():
-    fees = Fees.query.limit(10).all()
+    fees = Fees.get_fees_data()
     return render_template('fees.html', fees=fees)
 

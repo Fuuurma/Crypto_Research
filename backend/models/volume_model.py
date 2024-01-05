@@ -1,3 +1,6 @@
+import plotly.express as px
+import plotly.io as pio
+import pandas as pd
 from app import db
 
 class Volume(db.Model):
@@ -74,3 +77,85 @@ class Volume(db.Model):
         grouped_data = db.session.query(Volume.category, db.func.sum(Volume.daily_volume)).group_by(Volume.category).all()
         return grouped_data
     
+    
+    def get_volume_line_chart():
+    # Query data from the Volume table
+        data = db.session.query(Volume.category, db.func.sum(Volume.total24h).label('total24h')).group_by(Volume.category).all()
+
+        # Convert the result to a DataFrame
+        df = pd.DataFrame(data, columns=['Category', 'Total 24H'])
+
+        # Create a line chart using Plotly Express directly from the queried data
+        fig = px.bar(df, x='Category', y='Total 24H', title='Total 24H by Category',text='Total 24H')
+
+        # Customize layout
+        fig.update_layout(
+            xaxis_title='Category',
+            yaxis_title='Total 24H',
+            plot_bgcolor='#091E42',
+            paper_bgcolor='#091E42',
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+        )
+
+        # Convert to HTML and return
+        plot_html = pio.to_html(fig, full_html=False)
+        return plot_html
+    
+    
+    def get_volume_bar_chart_top25():
+        data = db.session.query(Volume.name, Volume.total_all_time).order_by(Volume.total_all_time.desc()).limit(5).all()
+
+        df = pd.DataFrame(data, columns=['Name', 'AthVolume'])
+
+        fig = px.bar(df, x='Name', y='AthVolume', title='All time Volume', text = 'AthVolume' )
+
+        fig.update_layout(
+            xaxis_title='Name',
+            yaxis_title='All time Volume',
+            plot_bgcolor='#091E42',
+            paper_bgcolor='#091E42',
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+        )
+
+        # Convert to HTML and return
+        plot_html = pio.to_html(fig, full_html=False)
+        return plot_html
+    
+    
+    def get_x_best_n_worst_performers_plot():
+        b1 = Volume.get_top_x_dex_by_volume_change(5, '1d')
+        b7 = Volume.get_top_x_dex_by_volume_change(5, '7d')
+        b30 = Volume.get_top_x_dex_by_volume_change(5, '1m')
+        
+        w1 = Volume.get_bottom_x_dex_by_volume_change(5, '1d')
+        w7 = Volume.get_bottom_x_dex_by_volume_change(5, '7d')
+        w30 = Volume.get_bottom_x_dex_by_volume_change(5, '1m')
+        
+        # scatter plot
+        bcolors = ['#BAF3DB', '#2ABB7F', '#1F845A' ]
+        wcolors = ['#FFD5D2', '#F15B50', '#C9372C' ]
+        
+        best_df = pd.concat([b1, b7, b30], keys=['change_1d', 'change_7d', 'change_1m'])
+        worst_df = pd.concat([w1, w7, w30], keys=['change_1d', 'change_7d', 'change_1m'])
+
+        # Create scatter plot
+        fig = px.scatter(
+            best_df, x='total24h', y='name', color='level_0',
+            title='Best Performers Scatter Plot',
+            color_discrete_map={'1d': '#BAF3DB', '7d': '#2ABB7F', '1m': '#1F845A'}
+        )
+
+        # Customize layout
+        fig.update_layout(
+            xaxis_title='X Axis Title',
+            yaxis_title='Y Axis Title',
+            plot_bgcolor='#091E42',
+            paper_bgcolor='#091E42',
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+        )
+
+        # Convert to HTML and return
+        plot_html = pio.to_html(fig, full_html=False)
+        return plot_html
+
+        
