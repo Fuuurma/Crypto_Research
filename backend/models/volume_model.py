@@ -135,9 +135,10 @@ class Volume(db.Model):
         bcolors = ['#BAF3DB', '#2ABB7F', '#1F845A' ]
         wcolors = ['#FFD5D2', '#F15B50', '#C9372C' ]
         
-        best_df = pd.concat([b1, b7, b30], keys=['change_1d', 'change_7d', 'change_1m'])
-        worst_df = pd.concat([w1, w7, w30], keys=['change_1d', 'change_7d', 'change_1m'])
+        best_df = pd.concat([pd.DataFrame(df, columns=['your_x_column', 'your_y_column']) for df in [b1, b7, b30]], keys=['1d', '7d', '1m'])
+        worst_df = pd.concat([pd.DataFrame(df, columns=['your_x_column', 'your_y_column']) for df in [w1, w7, w30]], keys=['1d', '7d', '1m'])
 
+        
         # Create scatter plot
         fig = px.scatter(
             best_df, x='total24h', y='name', color='level_0',

@@ -1,6 +1,8 @@
 # models/fees_model.py
 import plotly.graph_objects as go
 import plotly.io as pio
+import plotly.express as px
+import pandas as pd
 
 from app import db
 
@@ -72,5 +74,52 @@ class Fees(db.Model):
         )
         plot_html = pio.to_html( fig, full_html = False )
         return plot_html
-            
+        
+    @staticmethod    
+    def get_fees_by_type_plot():
+        # Query data from the Fees table using group_by and func.sum
+        data = db.session.query(Fees.protocolType, db.func.sum(Fees.total24h).label('total24h')).group_by(Fees.protocolType).all()
+        
+        # Convert the result to a DataFrame
+        data_df = pd.DataFrame(data, columns=['protocolType', 'total24h'])
+
+        # Create a bar plot using Plotly Express
+        fig = px.bar(data_df, x='protocolType', y='total24h', title='Total 24H by Protocol Type')
+
+        # Customize layout
+        fig.update_layout(
+            xaxis_title='Protocol Type',
+            yaxis_title='Total 24H',
+            plot_bgcolor='#091E42',
+            paper_bgcolor='#091E42',
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+        )
+
+        # Convert to HTML and return
+        plot_html = pio.to_html(fig, full_html=False)
+        return plot_html 
+    
+    @staticmethod    
+    def get_fees_by_category_plot():
+        # Query data from the Fees table using group_by and func.sum
+        data = db.session.query(Fees.category, db.func.sum(Fees.total24h).label('total24h')).group_by(Fees.category).all()
+        
+        # Convert the result to a DataFrame
+        data_df = pd.DataFrame(data, columns=['category', 'total24h'])
+
+        # Create a bar plot using Plotly Express
+        fig = px.bar(data_df, x='category', y='total24h', title='Total 24H by Category Type')
+
+        # Customize layout
+        fig.update_layout(
+            xaxis_title='Category',
+            yaxis_title='Total 24H',
+            plot_bgcolor='#091E42',
+            paper_bgcolor='#091E42',
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+        )
+
+        # Convert to HTML and return
+        plot_html = pio.to_html(fig, full_html=False)
+        return plot_html 
             

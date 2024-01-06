@@ -1,28 +1,15 @@
-#volume-general-container{
+
+
+.fees-historic-plot-container{
     margin: auto;
     border: 2px solid #E9F2FF;
     border-radius: 10px;
-    overflow-y: auto; 
     background-color: #091E42;
     width: 90%;
     max-width: 90%;
-    height: 80vh;
+    height: 70vh;
+    overflow: hidden;
 
-}
-
-#volume-plot{
-    width: 60%;
-    margin: auto;
-    border: 2px solid #E9F2FF;
-    border-radius: 10px;
-    padding: 3px;
-    padding-right: 9px;
-}
-
-
-
-th{
-    padding: 0px !important;
 }
 
 .th-container{
@@ -33,13 +20,35 @@ th{
     border-bottom: 1px solid #E9F2FF;
     display: flex; /* Use flexbox */
     align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    justify-content: start; /* Center horizontally */
     text-align: start;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: auto;
     contain: content;
 
+}
+
+
+#head-test {
+    position: sticky;
+    top: 0;
+    z-index: 3; 
+}
+th{
+    padding: 0px !important;
+}
+
+
+#fees-general-container{
+    margin: auto;
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
+    overflow-y: auto; 
+    background-color: #091E42;
+    width: 90%;
+    max-width: 90%;
+    height: 80vh;
 }
 
 .table-responsive{
@@ -60,15 +69,12 @@ th{
     margin-right: 10px;
 }
 
-#head-test {
-    position: sticky;
-    top: 0;
-    z-index: 3; 
+.bordered{
+    border: 2px solid #E9F2FF;
+    border-radius: 10px;
 }
 
-#row-test{
-    position: sticky;
-    top: 0;
-    z-index: 3;
+#fees-container{
+    background-color: yellow;
 }
 

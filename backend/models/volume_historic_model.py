@@ -39,23 +39,18 @@ class Volume_Historic(db.Model):
     def get_volume_line_chart():
         vol_data = Volume_Historic.query.all()
 
-        # Extracting data for the plot
         dates = [entry.date for entry in vol_data]
         volumes = [entry.volume for entry in vol_data]
         cumulative_volumes = [entry.cumulative_volume for entry in vol_data]
 
-        # Create a subplot with two y-axes
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-        # Plot daily volume on the primary y-axis
         fig.add_trace(go.Scatter(x=dates, y=volumes, mode='lines', name='Volume', 
                                  line=dict(color='#388BFF'), showlegend=False), secondary_y=False)
 
-        # Plot cumulative volume on the secondary y-axis
         fig.add_trace(go.Scatter(x=dates, y=cumulative_volumes, mode='lines', name='Cumulative Volume', 
                                  line=dict(color='#DA62AC'), showlegend=False), secondary_y=True)
 
-        # Update layout
         fig.update_layout(
             title='Volume Over Time',
             xaxis_title='Date',
