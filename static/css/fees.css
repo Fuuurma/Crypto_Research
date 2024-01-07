@@ -18,9 +18,9 @@
     height: 50px;
     border-top: 1px solid #E9F2FF;
     border-bottom: 1px solid #E9F2FF;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center vertically */
-    justify-content: start; /* Center horizontally */
+    display: flex; 
+    align-items: center; 
+    justify-content: start; 
     text-align: start;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -76,5 +76,15 @@ th{
 
 #fees-container{
     background-color: yellow;
+}
+
+#name{
+    text-decoration: none ;
+}
+#name:hover{
+    background-color: yellow;
+}
+p{
+    color: #E9F2FF;
 }
 

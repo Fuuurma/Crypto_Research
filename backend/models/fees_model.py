@@ -50,6 +50,11 @@ class Fees(db.Model):
     def get_fees_data():
         fees = Fees.query.limit( 100 ).all()
         return fees
+    
+    @staticmethod
+    def get_individual_fees_data( name ):
+        data = Fees.query.filter_by( name = name ).first()
+        return data
 
 
     @staticmethod
@@ -99,7 +104,7 @@ class Fees(db.Model):
         plot_html = pio.to_html(fig, full_html=False)
         return plot_html 
     
-    @staticmethod    
+    @staticmethod     
     def get_fees_by_category_plot():
         # Query data from the Fees table using group_by and func.sum
         data = db.session.query(Fees.category, db.func.sum(Fees.total24h).label('total24h')).group_by(Fees.category).all()
@@ -122,4 +127,5 @@ class Fees(db.Model):
         # Convert to HTML and return
         plot_html = pio.to_html(fig, full_html=False)
         return plot_html 
+            
             

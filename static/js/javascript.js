@@ -64,6 +64,12 @@ function format_all_numbers()
             const changed_value = format_number(value);
             element.textContent = changed_value;
         }
+        
+        else
+        {
+            const changed_value = "-";
+            // element.textContent = changed_value;
+        }
     });
 
     pct_changes.forEach((element) => {
@@ -164,5 +170,16 @@ document.addEventListener('DOMContentLoaded', function() {
             var url = 'chains/' + chain;
             window.location.href = url;
         });
+    });
+});
+
+
+
+// For fees link
+$(document).ready(function () {
+    $('.fee-link').on('click', function (event) {
+        event.preventDefault();
+        var name = $(this).data('name');
+        window.location.href = '/fees/' + name;
     });
 });

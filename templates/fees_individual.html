@@ -1,0 +1,219 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Fees individual
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fees.css') }}">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="fees-container">
+
+    <div class="fees-historic-plot-container mt-5 mb-5">
+        {{ fees_plot | safe }}
+      
+    </div>
+  
+    <div id="fees-general-container">
+      <div class="table-container">
+      <div class="table-responsive">
+        <table class="table table-striped table-borderless table-sm table align-middle">
+          <thead id="head-test">
+            <tr>
+              <th scope="col">
+                <div class="th-container pl-3" id="th-first">
+                  #
+                </div>
+              </th>
+              <th scope="col" id="table-name-column">
+                <div class="th-container pl-3">
+                  Name
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  Category
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  Type
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                   Fees 24h
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  User Fees 24h
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  Protocol Revenue 24h
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                   Fees 7d
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                   Fees 30d
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  7d over 7d
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  30d over 30d
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  48h to 24h
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  14d to 7d
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  60d to 30d
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  Total All Time
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily Revenue
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily user fees
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily holders rev
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily creator rev
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily supply rev
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily protocol rev
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3">
+                  daily bribes rev
+                </div>
+              </th>
+              <th scope="col">
+                <div class="th-container pl-3" id="th-last">
+                  Holders rev 30d
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="pl-4">
+                1
+              </th>
+              <td class="pl-3" id="name-container">
+                <a href="#" class="fee-link" data-name = "{{ fee.name }}" id="name">
+                  <img src="{{ fee.logo }}" alt="img of {{fee.displayName}}" id="coin-logo-table" class="d-inline img-fluid rounded-circle">
+                  <p class="font-weight-bold d-inline"> {{ fee.displayName }} </p>
+                </a>
+              </td>
+  
+                <td class="pl-3">{{ fee.protocolType }}</td>
+                <td class="pl-3">{{ fee.category }}</td>
+                <td class="">
+                  <p class="number d-inline"> 
+                    {{ fee.total24h }}
+                  </p> 
+                    <p class="pct-change d-inline ml-1">
+                      {{ fee.change_1d }}
+                    </p>
+                </td>
+                <td class="pl-3 number">{{ fee.dailyUserFees }}</td>
+                <td class="pl-3 number">{{ fee.dailyProtocolRevenue }}</td>
+  
+                <td class="pl-3">
+                  <p class="number d-inline"> 
+                    {{ fee.total7d }}
+                  </p>
+                    <p class="pct-change d-inline ml-1">
+                      {{ fee.change_7d }}
+                    </p>
+                </td>
+                
+                <td class="pl-3">
+                  <p class="number d-inline"> 
+                    {{ fee.total30d }}
+                  </p>
+                    <p class="pct-change d-inline ml-1">
+                      {{ fee.change_1m }}
+                  </p>
+                </td>
+                <td class="pl-3 pct-change">{{ fee.change_7dover7d }}</td>
+                <td class="pl-3 pct-change">{{ fee.change_30dover30d }}</td>
+                <td class="pl-3 number">{{ fee.total48hto24h }}</td>
+                <td class="pl-3 number">{{ fee.total14dto7d }}</td>
+                <td class="pl-3 number">{{ fee.total60dto30d }}</td>
+                <td class="number">{{ fee.totalAllTime }}</td>
+                <td class="pl-3 number">{{ fee.dailyRevenue }}</td>
+                <td class="pl-3 number">{{ fee.dailyUserFees }}</td>
+                <td class="pl-3 number">{{ fee.dailyHoldersRevenue }}</td>
+                <td class="pl-3 number">{{ fee.dailyCreatorRevenue }}</td>
+                <td class="pl-3 number">{{ fee.dailySupplySideRevenue }}</td>
+                <td class="pl-3 number">{{ fee.dailyProtocolRevenue }}</td>
+                <td class="pl-3 number">{{ fee.dailyBribesRevenue }}</td>
+                <td class="pl-3 number">{{ fee.holdersRevenue30d }}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    {{ historic_data }}
+  </div>
+
+</div>
+{% endblock %}
+
+
+ 
+
+

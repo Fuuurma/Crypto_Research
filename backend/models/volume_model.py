@@ -1,4 +1,6 @@
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import plotly.io as pio
 import pandas as pd
 from app import db
@@ -80,21 +82,29 @@ class Volume(db.Model):
     
     def get_volume_line_chart():
     # Query data from the Volume table
-        data = db.session.query(Volume.category, db.func.sum(Volume.total24h).label('total24h')).group_by(Volume.category).all()
+        data = db.session.query(
+        Volume.category,
+        db.func.sum(Volume.total24h).label('total24h'),
+        db.func.count(Volume.name).label('protocol_count')
+        ).group_by(Volume.category).all()
 
         # Convert the result to a DataFrame
-        df = pd.DataFrame(data, columns=['Category', 'Total 24H'])
+        df = pd.DataFrame(data, columns=['Category', 'Total 24H', 'Protocol Count'])
 
-        # Create a line chart using Plotly Express directly from the queried data
-        fig = px.bar(df, x='Category', y='Total 24H', title='Total 24H by Category',text='Total 24H')
-
+        # Create a grouped bar chart using Plotly Express
+        fig = go.Figure()
+        fig.add_trace(go.Bar(x=df['Category'], y=df['Total 24H'], name='Total 24H', text=df['Total 24H']))
+        fig.add_trace(go.Bar(x=df['Category'], y=df['Protocol Count'], name='Protocol Count', text=df['Protocol Count']))
         # Customize layout
         fig.update_layout(
+            barmode='group',  # Grouped bar chart
+            title_text='Total 24H and Protocol Count by Category',
             xaxis_title='Category',
-            yaxis_title='Total 24H',
+            yaxis_title='Values',
             plot_bgcolor='#091E42',
             paper_bgcolor='#091E42',
-            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF")
+            font=dict(family="Calibri, sans-serif", size=16, color="#E9F2FF"),
+            showlegend = False
         )
 
         # Convert to HTML and return

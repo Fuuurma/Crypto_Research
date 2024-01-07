@@ -83,8 +83,10 @@
               {{ loop.index }}
             </th>
             <td class="pl-3">
-              <img src="{{ fee.logo }}" alt="img of {{fee.displayName}}" id="coin-logo-table" class="d-inline img-fluid rounded-circle">
-              <p class="font-weight-bold d-inline"> {{ fee.displayName }} </p>
+              <a href="#" class="fee-link" data-name = "{{ fee.name }}">
+                <img src="{{ fee.logo }}" alt="img of {{fee.displayName}}" id="coin-logo-table" class="d-inline img-fluid rounded-circle">
+                <p class="font-weight-bold d-inline"> {{ fee.displayName }} </p>
+              </a>
             </td>
 
               <td class="pl-3">{{ fee.protocolType }}</td>
